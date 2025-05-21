@@ -9,6 +9,8 @@ The following is the list of items, which are required to be completed.
 Group 3:
 1. DANG CHEN
 2. Denzel Benaya Suhermin
+3. Rui Yan
+4. Jin Wang
 
 # Project planning BEFORE iteration-1, (see chapters 1-3)
 Checklist/TODOs: 
@@ -26,6 +28,8 @@ Project Goals:
 Roles:
 1. DANG CHEN - Backend
 2. Denzel Suhermin - Frontend
+3. Rui Yan - Backend
+4. Jin Wang - Frontend
 
 
 
