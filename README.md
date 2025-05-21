@@ -6,9 +6,11 @@ The following is the list of items, which are required to be completed.
 
 ## Team
 
-It is recommended to complete this assignment in a group of 2-4 students.
-1. DANG CHEN
+Group 3:
+1. Dang Chen
 2. Denzel Benaya Suhermin
+3. Rui Yan
+4. Jin Wang
 
 # Project planning BEFORE iteration-1, (see chapters 1-3)
 Checklist/TODOs: 
@@ -16,6 +18,18 @@ Checklist/TODOs:
 * ✅ github entry timestamp is BEFORE the iteration-1
 * (Pending) User stories are correct
 * (Pending) Must have more user stories than fits into iterations 1 and 2. To practice the priority.
+
+Project Goals:
+* Building a user friendly interface to make navigating easy
+* Providing a secure login for customers and cleaning providers
+* Implement a cloud based storage system like AWS
+* Allow Providers to track earnings and managing appointments
+
+Roles:
+1. DANG CHEN - Backend
+2. Denzel Suhermin - Frontend
+
+
 
 Total: 7 days
 
