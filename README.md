@@ -5,7 +5,7 @@ The following is the list of items, which are required to be completed.
 
 ## Team
 
-Group 3:
+Practical B Group 3:
 1. DANG CHEN
 2. Denzel Benaya Suhermin
 3. Rui Yan
