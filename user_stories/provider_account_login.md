@@ -36,7 +36,7 @@ Description-v1: As a provider of cleaning services, I need a login interface to 
 --------------------------
 
 ## Tasks
-1.Low-fidelity login interface design (such as Figma) - Estimation `0.5` days<br>
+1. Low-fidelity login interface design (such as Figma) - Estimation `0.5` days<br>
 2. Implement the front-end design - Estimation `1` days<br>
 3. Integrate with backend login API - Estimation `2` days<br>
 4. Test - Estimation `0.5` days<br>
