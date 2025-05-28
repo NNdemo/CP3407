@@ -6,6 +6,8 @@ This directory contains the user stories for the MyClean application. Each file 
 
 1. [Customer Account Registration](./user_story_customer_account_registration.md) - Allow users to create accounts in the MyClean application
 2. [Book a Cleaning Service](./user_story_book_cleaning_service.md) - Enable users to select and book cleaning services
+3. [Browse a Cleaning Service](./user_story_browse_cleaning_service.md) - Allow users to browse cleaning services
+4. [Customer Account Login](./user_story_customer_account_login.md) - Allow users to login to their account
 
 ## Story Format
 
