@@ -15,8 +15,9 @@ Practical B Group 3:
 Checklist/TODOs: 
 * ✅ Update the following during each week prac session
 * ✅ github entry timestamp is BEFORE the iteration-1
-* (Pending) User stories are correct
-* (Pending) Must have more user stories than fits into iterations 1 and 2. To practice the priority.
+* ✅ User stories are correct
+* ✅ Must have more user stories than fits into iterations 1 and 2. To practice the priority.
+* 
 
 Project Goals:
 * Building a user friendly interface to make navigating easy
@@ -34,20 +35,23 @@ Roles:
 
 Total: 7 days
 
-<!-- 
-## Iteration 1 [duration 3-4 weeks], add your start and end dates 
 
-* Goal is to have 2 iterations during a trimester of teaching.
-* Update the following during each week prac session
-* During pracs, you may experiment with using other github ways of tracking changes, e.g. via pull requests.
+## Iteration 1 [Jun 4, 2025 - Jun 24, 2025]
 
-1. [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
-2. ...
+* Focus on core functionality and user authentication
+* Weekly progress updates during practical sessions
+* Using pull requests for code review and integration
+
+1. [Customer Account Registration](./user_stories/user_story_customer_account_registration.md), priority High, 5 days 
+2. [Customer Account Login](./user_stories/user_story_customer_account_login.md), priority High, 4 days
+3. [Provider Account Registration](./user_stories/user_story_provider_account_registration.md), priority Medium, 5 days
+4. [Provider Account Login](./user_stories/user_story_provider_account_login.md), priority Medium, 4 days
+5. [Browse Cleaning Services](./user_stories/user_story_browse_cleaning_service.md), priority High, 3 days
 
 Total: 21 days
 
 
-### Iteration 2 [duration 3-4 weeks], add your start and end dates
+<!-- ### Iteration 2 [duration 3-4 weeks], add your start and end dates
 Goal is to have 2 iterations during a trimester of teaching.
 1. [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
 2. ...
@@ -56,6 +60,6 @@ Total: 21 days
 
 # Actual iterations
 1. [Iteration-1](./iteration_1.md)
-2. [Iteration-2](./iteration_2.md)
- -->
+2. [Iteration-2](./iteration_2.md) -->
+
 
