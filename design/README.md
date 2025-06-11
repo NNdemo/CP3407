@@ -49,3 +49,18 @@ erDiagram
         datetime updated_at
     }
 ```
+
+
+### Prototype
+
+#### Index
+![Index Design](design/images/indexDesign.png)
+
+#### Login
+![Login Page](design/images/Login.png)
+
+#### Register
+![Register Page](design/images/Register.png)
+
+#### View Bookings
+![View Bookings](design/images/ViewAssignedBooking.png)
