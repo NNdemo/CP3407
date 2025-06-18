@@ -52,7 +52,6 @@ erDiagram
 
 ### UML Diagram
 ```mermaid
-
 classDiagram
     class User {
         +int id
@@ -63,6 +62,10 @@ classDiagram
         +string phone_number
         +string user_type
         +bool is_active
+        +register()
+        +login()
+        +updateProfile()
+        +deactivate()
     }
 
     class CleaningService {
@@ -73,6 +76,9 @@ classDiagram
         +int duration
         +bool is_active
         +int provider_id
+        +createService()
+        +updateService()
+        +disableService()
     }
 
     class Appointment {
@@ -85,10 +91,14 @@ classDiagram
         +string notes
         +datetime created_at
         +datetime updated_at
+        +createAppointment()
+        +cancel()
+        +updateStatus()
+        +addNotes()
     }
 
     User "1" <-- "0..*" CleaningService : provides
-    User "1" <-- "0..*" Appointment : makes
+    User "1" <-- "0..*" Appointment : books
     CleaningService "1" <-- "0..*" Appointment : includes
     User "1" <-- "0..*" Appointment : serves
 
