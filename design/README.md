@@ -50,6 +50,50 @@ erDiagram
     }
 ```
 
+### UML Diagram
+```mermaid
+
+classDiagram
+    class User {
+        +int id
+        +string email
+        +string username
+        +string hashed_password
+        +string full_name
+        +string phone_number
+        +string user_type
+        +bool is_active
+    }
+
+    class CleaningService {
+        +int id
+        +string name
+        +string description
+        +decimal price
+        +int duration
+        +bool is_active
+        +int provider_id
+    }
+
+    class Appointment {
+        +int id
+        +int customer_id
+        +int service_id
+        +int provider_id
+        +datetime appointment_date
+        +string status
+        +string notes
+        +datetime created_at
+        +datetime updated_at
+    }
+
+    User "1" <-- "0..*" CleaningService : provides
+    User "1" <-- "0..*" Appointment : makes
+    CleaningService "1" <-- "0..*" Appointment : includes
+    User "1" <-- "0..*" Appointment : serves
+
+
+```
 
 ### Prototype
 
