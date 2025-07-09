@@ -21,21 +21,25 @@ User stories or tasks (see chapter 4):
 
 
 In progress:
-* Task-3 (Customer Account Login), date started 05/06/2025
-* ...
+<!-- * Task-2 (Browse Cleaning Services), date started 18/06/2025
+* Task-1 (Book a Cleaning Service), date started 18/06/2025
+* Task-4 (View Assigned Bookings), date started 18/06/2025 -->
+* No any tasks in progress
 
 Completed:
-not any task have completed yet
-<!-- * Task-3 (developer name or initials), date completed
-* ... -->
+* Task-3 (Customer Account Login), date completed 08/06/2025
+* Task-2 (Browse Cleaning Services), date completed 09/07/2025
+* Task-1 (Book a Cleaning Service), date completed 09/07/2025
+* Task-4 (View Assigned Bookings), date completed 09/07/2025
+
 
 ### Burn Down for iteration-1 (see chapter 4):
 Update this at least once per week
-* 2 weeks left, 10 days of estimated amount of work 
+* 1 weeks left, 5 days of estimated amount of work 
 <!-- * 2 weeks left, xx days
 * 1 weeks left, xx days
 * 0 weeks left, xx days -->
-* Actual Velocity: 0.125 
+* Actual Velocity: 1 
 
 # Screemshots of completed work
 
