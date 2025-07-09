@@ -1,6 +1,7 @@
 # Ignore frontend and backend directories
 /frontend/*
 /backend/*
+/version1/*
 
 # Dependencies
 /node_modules
