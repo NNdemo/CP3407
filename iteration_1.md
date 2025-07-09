@@ -40,25 +40,25 @@ Update this at least once per week
 # Screemshots of completed work
 
 ### Index
-![Index](interation_1_images/Home.jpeg)
+![Index](iteation1_images/Home.jpeg)
 
 ### Login
-![Login](interation_1_images/Login.jpeg)
+![Login](iteation1_images/Login.jpeg)
 
 ### Register
-![Register](interation_1_images/Register.jpeg)
+![Register](iteation1_images/Register.jpeg)
 
 ### My Orders - customer view
-![My Orders - customer view](interation_1_images/MyOrdersCustomer.jpeg)
+![My Orders - customer view](iteation1_images/MyOrdersCustomer.jpeg)
 
 ### Service Type Overview
-![Service Type Overview](interation_1_images/BrowseServices.jpeg)
+![Service Type Overview](iteation1_images/BrowseServices.jpeg)
 
 ### My Orders - provider view
-![My Orders - provider view](interation_1_images/MyOrdersProviders.jpeg)
+![My Orders - provider view](iteation1_images/MyOrdersProviders.jpeg)
 
 ### Provider Dashboard
-![Provider Dashboard](interation_1_images/ProviderDashboard.jpeg)
+![Provider Dashboard](iteation1_images/ProviderDashboard.jpeg)
 
 ### Service Type - Provider View
-![Service Type - Provider View](interation_1_images/ServicesType_Provider.jpeg)
+![Service Type - Provider View](iteation1_images/ServicesType_Provider.jpeg)
