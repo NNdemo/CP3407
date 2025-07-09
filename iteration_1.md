@@ -36,3 +36,29 @@ Update this at least once per week
 * 1 weeks left, xx days
 * 0 weeks left, xx days -->
 * Actual Velocity: 0.125 
+
+# Screemshots of completed work
+
+### Index
+![Index](interation_1_images/Home.jpeg)
+
+### Login
+![Login](interation_1_images/Login.jpeg)
+
+### Register
+![Register](interation_1_images/Register.jpeg)
+
+### My Orders - customer view
+![My Orders - customer view](interation_1_images/MyOrdersCustomer.jpeg)
+
+### Service Type Overview
+![Service Type Overview](interation_1_images/BrowseServices.jpeg)
+
+### My Orders - provider view
+![My Orders - provider view](interation_1_images/MyOrdersProviders.jpeg)
+
+### Provider Dashboard
+![Provider Dashboard](interation_1_images/ProviderDashboard.jpeg)
+
+### Service Type - Provider View
+![Service Type - Provider View](interation_1_images/ServicesType_Provider.jpeg)
