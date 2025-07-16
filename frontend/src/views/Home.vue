@@ -35,7 +35,7 @@
       <div class="service-item">
         <div class="service-content">
           <h2 class="service-title">Commercial Cleaning</h2>
-          <p class="service-description">Professional solutions for your business.</p>
+          <p class="service-description">Professional cleaning solutions for your business needs.</p>
           <router-link to="/services" class="service-link">Learn more ></router-link>
         </div>
         <div class="service-image-container">
@@ -256,9 +256,10 @@ const activeServices = [
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   padding: 60px 40px;
+  height: 100%;
 }
 
 .service-item:nth-child(odd) {
@@ -275,6 +276,8 @@ const activeServices = [
   z-index: 2;
   position: relative;
   margin-bottom: 40px;
+  width: 100%;
+  flex-shrink: 0;
 }
 
 .service-title {
@@ -315,6 +318,7 @@ const activeServices = [
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  flex-shrink: 0;
 }
 
 .service-img {
