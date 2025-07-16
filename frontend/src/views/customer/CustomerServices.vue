@@ -2523,8 +2523,13 @@ onMounted(async () => {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
+  gap: 16px; /* Increased gap for better spacing */
+  margin-bottom: 40px;
+  justify-content: start; /* Changed from center to start for left alignment */
+  width: 100%;
+
+  /* Base: Larger minimum width to prevent circular element distortion */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
 }
 
 .service-card {
@@ -2646,7 +2651,7 @@ onMounted(async () => {
   display: grid;
   gap: 16px; /* Increased gap for better spacing */
   margin-bottom: 40px;
-  justify-content: center; /* Center align for better appearance */
+  justify-content: start; /* Changed from center to start for left alignment */
   width: 100%;
 
   /* Base: Larger minimum width to prevent circular element distortion */
@@ -2657,7 +2662,7 @@ onMounted(async () => {
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 8px; /* Reduced from 16px */
+  padding: 0 1px; /* Minimal padding to move content even further left */
 }
 
 /* Responsive Grid - Limited to 4 Columns Maximum */
@@ -2703,7 +2708,7 @@ onMounted(async () => {
     gap: 12px;
   }
   .container {
-    padding: 0 12px; /* Reduced from 30px */
+    padding: 0 1px; /* Minimal padding to move content even further left */
   }
 }
 
@@ -2713,7 +2718,7 @@ onMounted(async () => {
     gap: 12px;
   }
   .container {
-    padding: 0 12px; /* Reduced from 24px */
+    padding: 0 1px; /* Minimal padding to move content even further left */
   }
 }
 
