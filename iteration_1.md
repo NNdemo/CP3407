@@ -27,7 +27,7 @@ In progress:
 * No any tasks in progress
 
 Completed:
-* Task-3 (Customer Account Login), date completed 08/06/2025
+* Task-3 (Customer Account Registration & Login), date completed 08/06/2025
 * Task-2 (Browse Cleaning Services), date completed 09/07/2025
 * Task-1 (Book a Cleaning Service), date completed 09/07/2025
 * Task-4 (View Assigned Bookings), date completed 09/07/2025
