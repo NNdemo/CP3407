@@ -25,12 +25,27 @@ Project Goals:
 * Implement a cloud based storage system like AWS
 * Allow Providers to track earnings and managing appointments
 
-Roles:
-1. DANG CHEN - Backend
-2. Denzel Suhermin - Frontend
-3. Rui Yan - Backend
-4. Jin Wang - Frontend
+## Roles
 
+1. **DANG CHEN**  
+    - Backend Development  
+    - Frontend Development  
+    - Database Management
+
+2. **Denzel Benaya Suhermin**  
+    - Frontend Development  
+    - Web Testing  
+    - Reporting
+
+3. **Rui Yan**  
+    - Frontend Development  
+    - Web Testing  
+    - Reporting
+
+4. **Jin Wang**  
+    - Frontend Development  
+    - Figma Design
+    - Reporting
 
 
 Total: 7 days

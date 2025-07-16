@@ -10,7 +10,7 @@ Checklist:
 
 User stories or tasks (see chapter 4):
 1. [Customer Account Registration](./user_stories/user_stories.md), priority 10, 1.4 days
-2. [Customer Account Login](./user_stories/user_stories.md), priority 10, 3 days
+2. [Customer Account Login](./user_stories/user_stories.md), priority 10, 2 days
 3. [Browse Cleaning Services](./user_stories/user_stories.md), priority 10, 5 days
 4. [Book a Cleaning Service](./user_stories/user_stories.md), priority 10, 5 days 
 5. [View Assigned Bookings](./user_stories/user_stories.md), priority 30, 2.5 days
