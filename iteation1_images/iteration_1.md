@@ -9,11 +9,11 @@ Checklist:
 * Total estimated amount of work: 16 days
 
 User stories or tasks (see chapter 4):
-1. [Book a Cleaning Service](./user_stories/user_stories.md), priority 10, 5 days 
-2. [Browse Cleaning Services](./user_stories/user_stories.md), priority 10, 5 days
-3. [Customer Account Login](./user_stories/user_stories.md), priority 10, 3 days
-4. [View Assigned Bookings](./user_stories/user_stories.md), priority 30, 2.5 days
-<!-- 4. [Customer Account Registration](./user_stories/user_stories.md), priority 10, 1.4 days -->
+1. [Customer Account Registration](./user_stories/user_stories.md), priority 10, 1.4 days
+2. [Customer Account Login](./user_stories/user_stories.md), priority 10, 3 days
+3. [Browse Cleaning Services](./user_stories/user_stories.md), priority 10, 5 days
+4. [Book a Cleaning Service](./user_stories/user_stories.md), priority 10, 5 days 
+5. [View Assigned Bookings](./user_stories/user_stories.md), priority 30, 2.5 days
 <!-- 5. [Manage Provider Availability](./user_stories/user_stories.md), priority 10, 1.5 days -->
 <!-- 6. [Provider Login](./user_stories/user_stories.md), priority 10, 1.5 days -->
 <!-- 7. [Provider Account Registration](./user_stories/user_stories.md), priority 10, 1.5 days -->
@@ -52,17 +52,21 @@ Update this at least once per week
 ### Register
 ![Register](iteation1_images/Register.jpeg)
 
-### My Orders - customer view
-![My Orders - customer view](iteation1_images/MyOrdersCustomer.jpeg)
+<!-- ### Service Type - Provider View
+![Service Type - Provider View](iteation1_images/ServicesType_Provider.jpeg) -->
 
-### Service Type Overview
-![Service Type Overview](iteation1_images/BrowseServices.jpeg)
+### Browse Cleaning Services
+![Browse Cleaning Services](iteation1_images/BrowseServices.jpeg)
 
-### My Orders - provider view
+### Book a Cleaning Service
+![Book a Cleaning Service](iteation1_images/BookCleaningService.jpeg)
+
+### View Assigned Bookings
+![View Assigned Bookings](iteation1_images/MyOrdersCustomer.jpeg)
+
+<!-- ### My Orders - provider view
 ![My Orders - provider view](iteation1_images/MyOrdersProviders.jpeg)
 
 ### Provider Dashboard
-![Provider Dashboard](iteation1_images/ProviderDashboard.jpeg)
+![Provider Dashboard](iteation1_images/ProviderDashboard.jpeg) -->
 
-### Service Type - Provider View
-![Service Type - Provider View](iteation1_images/ServicesType_Provider.jpeg)
