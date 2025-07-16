@@ -40,6 +40,8 @@ const router = createRouter({
     {
       path: '/services',
       name: 'services',
+      // Use a dummy component for route definition
+      component: Home,
       beforeEnter: (to, from, next) => {
         const authStore = useAuthStore()
         if (!authStore.isAuthenticated.value) {
@@ -54,6 +56,7 @@ const router = createRouter({
     {
       path: '/order',
       name: 'order',
+      component: Home, // Dummy component to satisfy RouteRecordRaw
       beforeEnter: (to, from, next) => {
         const authStore = useAuthStore()
         if (!authStore.isAuthenticated.value) {
