@@ -38,6 +38,22 @@
             <p>Total Revenue</p>
           </div>
         </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🛠️</div>
+          <div class="stat-content">
+            <h3>{{ stats.activeServices }}</h3>
+            <p>Active Services</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-content">
+            <h3>{{ stats.averageRating }}</h3>
+            <p>Average Rating</p>
+          </div>
+        </div>
       </div>
 
       <div class="dashboard-actions">
@@ -84,10 +100,11 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { useAuthStore } from '../../stores/auth'
-import { ordersAPI, type Order } from '../../services/api'
+import { ordersAPI, servicesAPI, type Order, type ServiceType } from '../../services/api'
 
 const authStore = useAuthStore()
 const recentOrders = ref<Order[]>([])
+const services = ref<ServiceType[]>([])
 const loading = ref(false)
 
 const stats = computed(() => {
@@ -97,12 +114,20 @@ const stats = computed(() => {
   const totalRevenue = recentOrders.value
     .filter(o => o.status === 'completed')
     .reduce((sum, order) => sum + order.total_price, 0)
+  
+  // New metrics
+  const activeServices = services.value.filter(s => s.is_active).length
+  const averageRating = services.value.length > 0 
+    ? (services.value.reduce((sum, s) => sum + (s.rating || 0), 0) / services.value.length).toFixed(1)
+    : '0.0'
 
   return {
     totalOrders,
     pendingOrders,
     completedOrders,
-    totalRevenue
+    totalRevenue,
+    activeServices,
+    averageRating
   }
 })
 
@@ -134,8 +159,18 @@ const loadRecentOrders = async () => {
   }
 }
 
+const loadServices = async () => {
+  try {
+    const servicesData = await servicesAPI.getServices()
+    services.value = servicesData
+  } catch (error) {
+    console.error('Error loading services:', error)
+  }
+}
+
 onMounted(() => {
   loadRecentOrders()
+  loadServices()
 })
 </script>
 
