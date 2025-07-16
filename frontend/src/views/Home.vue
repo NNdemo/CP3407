@@ -17,8 +17,9 @@
             </router-link>
           </div>
           <div class="flower-image">
-            <!-- Placeholder for flower image -->
-            <div class="flower-placeholder"></div>
+            <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=300&fit=crop&crop=center"
+                 alt="Beautiful flowers"
+                 class="flower-img" />
           </div>
         </div>
       </div>
@@ -28,7 +29,9 @@
       <div class="content-grid">
         <div class="content-left">
           <div class="service-info">
-            <div class="service-image-placeholder"></div>
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500&h=300&fit=crop&crop=center"
+                 alt="Professional cleaning service"
+                 class="service-img" />
             <p>Experience the orderly joy in our modern cleaning services. Place your order online and get the cleaning service immediately. Transform your space into a brand new one.</p>
           </div>
         </div>
@@ -41,7 +44,9 @@
             </router-link>
           </div>
           <div class="content-image">
-            <div class="content-image-placeholder"></div>
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop&crop=center"
+                 alt="Luxury cleaning and flower services"
+                 class="content-img" />
           </div>
         </div>
       </div>
@@ -65,7 +70,9 @@
             <p><strong>General Enquiry:</strong><br>Kiev.Florist.Studio@gmail.com</p>
             <h4>Follow Us</h4>
             <div class="social-icons">
-              <!-- Social media icons would go here -->
+              <a href="#" class="social-icon">📘 Facebook</a>
+              <a href="#" class="social-icon">📷 Instagram</a>
+              <a href="#" class="social-icon">🐦 Twitter</a>
             </div>
           </div>
 
@@ -178,11 +185,12 @@
   font-weight: 500;
 }
 
-.flower-placeholder {
+.flower-img {
   width: 100%;
   height: 200px;
-  background: #e0e0e0;
+  object-fit: cover;
   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .content-section {
@@ -198,19 +206,21 @@
   gap: 40px;
 }
 
-.service-image-placeholder {
+.service-img {
   width: 100%;
   height: 200px;
-  background: #d0d0d0;
+  object-fit: cover;
   border-radius: 8px;
   margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.content-image-placeholder {
+.content-img {
   width: 100%;
   height: 300px;
-  background: #ffd700;
+  object-fit: cover;
   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .booking-section {
@@ -290,6 +300,23 @@
 }
 
 .footer-column li:hover {
+  color: #333;
+}
+
+.social-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.social-icon {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
   color: #333;
 }
 
