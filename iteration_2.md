@@ -1,0 +1,64 @@
+# Actual iteration-2 board, (see chapters 3 and 4), add your start and end dates 
+
+Checklist: 
+1. github entry timestamps √
+2. User stories are correct: see p39 √
+
+* Assumed Velocity: 90 % 
+* Number of developers: 4
+* Total estimated amount of work: 15 days
+
+User stories or tasks (see chapter 4):
+1. [Provider Account Registration](./user_stories/user_stories.md), priority 10, 5 days
+2. [Provider Login](./user_stories/user_stories.md), priority 10, 4 days
+3. [Manage Provider Availability](./user_stories/user_stories.md), priority 10, 5 days
+ 
+
+<!-- 5. [Manage Provider Availability](./user_stories/user_stories.md), priority 10, 1.5 days -->
+<!-- 6. [Provider Login](./user_stories/user_stories.md), priority 10, 1.5 days -->
+<!-- 7. [Provider Account Registration](./user_stories/user_stories.md), priority 10, 1.5 days -->
+
+
+
+In progress:
+* Task-1 (Provider Account Registration), date started 14/07/2025
+* Task-2 (Manage Provider Availability), date started 15/07/2025
+* Task-3 (Provider Login), date started 17/07/2025 -->
+* No any tasks in progress
+
+Completed:
+* Task-1 (Provider Account Registration), date completed xx/xx/2025
+* Task-2 (Manage Provider Availability), date completed xx/xx/2025
+* Task-3 (Provider Login), date completed xx/xx/2025
+
+
+
+### Burn Down for iteration-2 (see chapter 4):
+Update this at least once per week
+* 3 weeks left, 15 days of estimated amount of work 
+* 2 weeks left, 10 days of estimated amount of work
+<!-- * 1 weeks left, xx days
+* 0 weeks left, xx days -->
+* Actual Velocity: 100% 
+
+# Screemshots of completed work
+
+### Provider Account Registration
+![Provider Account Registration](iteation1_images/Home.jpeg)
+
+### Manage Provider Availability
+![Manage Provider Availability](iteation1_images/Login.jpeg)
+
+### Provider Login
+![Provider Login](iteation1_images/Register.jpeg)
+
+<!-- ### Service Type - Provider View
+![Service Type - Provider View](iteation1_images/ServicesType_Provider.jpeg) -->
+
+
+<!-- ### My Orders - provider view
+![My Orders - provider view](iteation1_images/MyOrdersProviders.jpeg)
+
+### Provider Dashboard
+![Provider Dashboard](iteation1_images/ProviderDashboard.jpeg) -->
+
