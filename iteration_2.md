@@ -43,22 +43,21 @@ Update this at least once per week
 
 # Screemshots of completed work
 
-### Provider Account Registration
+### Index
 ![Provider Account Registration](iteation1_images/Home.jpeg)
 
-### Manage Provider Availability
-![Manage Provider Availability](iteation1_images/Login.jpeg)
-
 ### Provider Login
-![Provider Login](iteation2_images/Register.jpeg)
+![Login](iteation1_images/Login.jpeg)
 
-<!-- ### Service Type - Provider View
-![Service Type - Provider View](iteation1_images/ServicesType_Provider.jpeg) -->
+### Register
+![Register](iteation1_images/Register.jpeg)
 
+### Service Type - Provider View
+![Service Type - Provider View](iteation1_images/ServicesType_Provider.jpeg)
 
-<!-- ### My Orders - provider view
+### My Orders - provider view
 ![My Orders - provider view](iteation1_images/MyOrdersProviders.jpeg)
 
 ### Provider Dashboard
-![Provider Dashboard](iteation1_images/ProviderDashboard.jpeg) -->
+![Provider Dashboard](iteation1_images/ProviderDashboard.jpeg)
 
