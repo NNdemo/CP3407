@@ -1,0 +1,56 @@
+MyClean 应用测试报告
+==================================================
+
+测试时间: 2025-07-23 15:16:25 - 2025-07-23 15:16:35
+测试耗时: 9.8 秒
+
+
+==============================
+测试脚本: test_backend_only.py
+描述: 后端API功能测试
+结果: 失败
+返回码: 1
+
+输出:
+MyClean 后端API测试脚本
+========================================
+[15:16:32] INFO: 开始运行MyClean后端API测试[0m
+[15:16:32] INFO: ============================================================[0m
+[15:16:32] INFO: 测试后端健康状态...[0m
+
+
+错误:
+D:\Semaster_5\CP3407 Advanced Software Engineering\project\CP3407\test_backend_only.py:6: SyntaxWarning: invalid escape sequence '\P'
+  运行方式: C:\Python312\python.exe test_backend_only.py
+Traceback (most recent call last):
+  File "D:\Semaster_5\CP3407 Advanced Software Engineering\project\CP3407\test_backend_only.py", line 99, in test_health_check
+    self.log(f"\u2713 后端健康检查通过: {data.get('status', 'unknown')}", "SUCCESS")
+  File "D:\Semaster_5\CP3407 Advanced Software Engineering\project\CP3407\test_backend_only.py", line 39, in log
+    print(f"[{timestamp}] {color}{level}: {message}{end_color}")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u2713' in position 25: illegal multibyte sequence
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Semaster_5\CP3407 Advanced Software Engineering\project\CP3407\test_backend_only.py", line 328, in main
+    success = tester.run_all_tests()
+              ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Semaster_5\CP3407 Advanced Software Engineering\project\CP3407\test_backend_only.py", line 280, in run_all_tests
+    if not self.test_health_check():
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Semaster_5\CP3407 Advanced Software Engineering\project\CP3407\test_backend_only.py", line 105, in test_health_check
+    self.log(f"\u2717 后端连接失败: {e}", "ERROR")
+  File "D:\Semaster_5\CP3407 Advanced Software Engineering\project\CP3407\test_backend_only.py", line 39, in log
+    print(f"[{timestamp}] {color}{level}: {message}{end_color}")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u2717' in position 23: illegal multibyte sequence
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Semaster_5\CP3407 Advanced Software Engineering\project\CP3407\test_backend_only.py", line 349, in <module>
+    exit(main())
+         ^^^^^^
+  File "D:\Semaster_5\CP3407 Advanced Software Engineering\project\CP3407\test_backend_only.py", line 342, in main
+    print(f"\n\u274c 测试脚本异常: {e}")
+UnicodeEncodeError: 'gbk' codec can't encode character '\u274c' in position 2: illegal multibyte sequence
+
