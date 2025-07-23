@@ -66,8 +66,12 @@ Total: 7 days
 Total: 21 days
 
 
-<-- ## Iteration 2 [duration 7-10 weeks], add your start and end dates
-Goal is to have 2 iterations during a trimester of teaching.
+<-- ## Iteration 2 [duration 7-10 weeks]
+
+* Focus on core functionality and user authentication
+* Weekly progress updates during practical sessions
+* Using pull requests for code review & integration
+
 1. [Provider Account Registration](./user_stories/user_stories.md), priority 10, 5 days
 2. [Provider Login](./user_stories/user_stories.md), priority 10, 4 days
 3. [Manage Provider Availability](./user_stories/user_stories.md), priority 10, 5 days
