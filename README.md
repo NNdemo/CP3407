@@ -65,10 +65,9 @@ Total: 7 days
 
 Total: 21 days
 
+## Iteration 2 [duration 7-10 weeks]
 
-<-- ## Iteration 2 [duration 7-10 weeks]
-
-* Focus on core functionality and user authentication
+* Delivered provider registration, login, and availability management to create a secure backbone for later booking features.
 * Weekly progress updates during practical sessions
 * Using pull requests for code review & integration
 
@@ -76,7 +75,7 @@ Total: 21 days
 2. [Provider Login](./user_stories/user_stories.md), priority 10, 4 days
 3. [Manage Provider Availability](./user_stories/user_stories.md), priority 10, 5 days
 
-Total: 14 days
+<!-- Total: 14 days
 
 # Actual iterations
 1. [Iteration-1](./iteration_1.md)
