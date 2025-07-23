@@ -66,12 +66,13 @@ Total: 7 days
 Total: 21 days
 
 
-<!-- ### Iteration 2 [duration 3-4 weeks], add your start and end dates
+<-- ## Iteration 2 [duration 7-10 weeks], add your start and end dates
 Goal is to have 2 iterations during a trimester of teaching.
-1. [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
-2. ...
+1. [Provider Account Registration](./user_stories/user_stories.md), priority 10, 5 days
+2. [Provider Login](./user_stories/user_stories.md), priority 10, 4 days
+3. [Manage Provider Availability](./user_stories/user_stories.md), priority 10, 5 days
 
-Total: 21 days
+Total: 14 days
 
 # Actual iterations
 1. [Iteration-1](./iteration_1.md)
