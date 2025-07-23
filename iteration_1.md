@@ -45,7 +45,11 @@ Update this at least once per week
 # Screemshots of completed work
 
 ### Index
-![Index](iteation1_images/Home.jpeg)
+![Index - Homepage 1](iteation1_images/Homepage_1.png)
+
+![Index - Homepage 2](iteation1_images/Homepage_2.png)
+
+![Index - Homepage 3](iteation1_images/Homepage_3.png)
 
 ### Login
 ![Login](iteation1_images/Login.jpeg)
