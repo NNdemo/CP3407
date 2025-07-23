@@ -37,8 +37,8 @@ Completed:
 Update this at least once per week
 * 3 weeks left, 15 days of estimated amount of work 
 * 2 weeks left, 10 days of estimated amount of work
-<!-- * 1 weeks left, xx days
-* 0 weeks left, xx days -->
+* 1 weeks left, 5 days of estimated amount of work
+<!-- * 0 weeks left, xx days -->
 * Actual Velocity: 100% 
 
 # Screemshots of completed work
