@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!-- Hero Section - Apple-style -->
+    <!-- Hero Section - Compact -->
     <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title">MyClean<sup>®</sup></h1>
@@ -11,47 +11,46 @@
         </div>
       </div>
       <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&h=800&fit=crop&crop=center"
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&h=600&fit=crop&crop=center"
              alt="Professional cleaning service"
              class="hero-img" />
       </div>
     </section>
 
-    <!-- Service Grid - Apple-style -->
-    <section class="services-grid">
-      <div class="service-item">
-        <div class="service-content">
-          <h2 class="service-title">Residential Cleaning</h2>
-          <p class="service-description">From deep cleaning to regular maintenance.</p>
-          <router-link to="/services" class="service-link">Learn more ></router-link>
+    <!-- Compact Services & Features Combined -->
+    <section class="main-content">
+      <div class="services-grid">
+        <div class="service-item">
+          <div class="service-content">
+            <h2 class="service-title">Residential Cleaning</h2>
+            <p class="service-description">From deep cleaning to regular maintenance.</p>
+            <router-link to="/services" class="service-link">Learn more ></router-link>
+          </div>
+          <div class="service-image-container">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=300&fit=crop&crop=center"
+                 alt="Residential cleaning"
+                 class="service-img" />
+          </div>
         </div>
-        <div class="service-image-container">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop&crop=center"
-               alt="Residential cleaning"
-               class="service-img" />
+
+        <div class="service-item">
+          <div class="service-content">
+            <h2 class="service-title">Commercial Cleaning</h2>
+            <p class="service-description">Professional cleaning solutions for your business needs.</p>
+            <router-link to="/services" class="service-link">Learn more ></router-link>
+          </div>
+          <div class="service-image-container">
+            <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&h=300&fit=crop&crop=center"
+                 alt="Commercial cleaning"
+                 class="service-img" />
+          </div>
         </div>
       </div>
 
-      <div class="service-item">
-        <div class="service-content">
-          <h2 class="service-title">Commercial Cleaning</h2>
-          <p class="service-description">Professional cleaning solutions for your business needs.</p>
-          <router-link to="/services" class="service-link">Learn more ></router-link>
-        </div>
-        <div class="service-image-container">
-          <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&h=400&fit=crop&crop=center"
-               alt="Commercial cleaning"
-               class="service-img" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Feature Section - Apple-style -->
-    <section class="feature">
-      <div class="feature-content">
-        <h2 class="feature-title">Why Choose MyClean?</h2>
-        <p class="feature-subtitle">Experience the difference that professional cleaning makes.</p>
-        <div class="feature-grid">
+      <!-- Compact Features -->
+      <div class="features-section">
+        <h2 class="features-title">Why Choose MyClean?</h2>
+        <div class="features-grid">
           <div class="feature-item">
             <div class="feature-icon">✨</div>
             <h3>Premium Quality</h3>
@@ -69,73 +68,41 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- CTA Section - Apple-style -->
-    <section class="cta">
-      <div class="cta-content">
+      <!-- Compact CTA -->
+      <div class="cta-section">
         <h2 class="cta-title">Ready to get started?</h2>
-        <p class="cta-subtitle">Book your first cleaning service today.</p>
         <router-link to="/services" class="cta-button">Book Now</router-link>
       </div>
     </section>
 
-    <!-- Footer Section - Apple-style -->
+    <!-- Compact Footer -->
     <footer class="footer">
       <div class="footer-content">
-        <div class="footer-section">
-          <p class="footer-promo">Remember to offer beautiful flowers from Kyiv LuxeBouquets Valentines Day, Mothers Day, Christmas... Reminds you 3 days before. No spam or sharing your address</p>
-          <div class="newsletter">
-            <input type="email" placeholder="Your Email" class="email-input">
-            <button class="remind-btn">REMIND</button>
-          </div>
-        </div>
-
-        <div class="footer-links">
-          <div class="footer-column">
+        <div class="footer-main">
+          <div class="footer-info">
             <h3>Contact Us</h3>
-            <p><strong>Address</strong><br>15/4 Khreshchatyk Street, Kyiv</p>
-            <p><strong>Phone</strong><br>+380980099777</p>
-            <p><strong>General Enquiry:</strong><br>Kiev.Florist.Studio@gmail.com</p>
-            <h4>Follow Us</h4>
-            <div class="social-icons">
-              <a href="#" class="social-icon">📘 Facebook</a>
-              <a href="#" class="social-icon">📷 Instagram</a>
-              <a href="#" class="social-icon">🐦 Twitter</a>
+            <p><strong>Address:</strong> 15/4 Khreshchatyk Street, Kyiv</p>
+            <p><strong>Phone:</strong> +380980099777</p>
+            <p><strong>Email:</strong> Kiev.Florist.Studio@gmail.com</p>
+          </div>
+          
+          <div class="footer-services">
+            <h3>Services</h3>
+            <div class="service-list">
+              <span v-for="service in activeServices" :key="service.id" class="service-tag">
+                {{ service.name }}
+              </span>
             </div>
           </div>
 
-          <div class="footer-column">
-            <h3>Shop</h3>
-            <ul>
-              <li>All Products</li>
-              <li>Fresh Flowers</li>
-              <li>Dried Flowers</li>
-              <li>Live Plants</li>
-              <li>Designer Vases</li>
-              <li>Aroma Candles</li>
-              <li>Freshener Diffuser</li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h3>Service</h3>
-            <ul>
-              <li v-for="service in activeServices" :key="service.id">
-                {{ service.name }}
-              </li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h3>About Us</h3>
-            <ul>
-              <li>Our story</li>
-              <li>Blog</li>
-              <li>Shipping & returns</li>
-              <li>Terms & conditions</li>
-              <li>Privacy policy</li>
-            </ul>
+          <div class="footer-newsletter">
+            <h3>Stay Updated</h3>
+            <p>Get reminders for special occasions</p>
+            <div class="newsletter">
+              <input type="email" placeholder="Your Email" class="email-input">
+              <button class="remind-btn">REMIND</button>
+            </div>
           </div>
         </div>
       </div>
@@ -162,46 +129,46 @@ const activeServices = [
   color: #333;
 }
 
-/* Hero Section */
+/* Compact Hero Section */
 .hero {
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 20px;
+  padding: 40px 20px;
   background: #fff;
 }
 
 .hero-content {
   max-width: 800px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .hero-title {
-  font-size: 6rem;
+  font-size: 4.5rem;
   font-weight: 600;
   line-height: 1.1;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   color: #333;
 }
 
 .hero-title sup {
-  font-size: 2rem;
+  font-size: 1.5rem;
   vertical-align: super;
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: #666;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-weight: 400;
 }
 
 .hero-links {
   display: flex;
-  gap: 30px;
+  gap: 20px;
   justify-content: center;
   align-items: center;
 }
@@ -209,7 +176,7 @@ const activeServices = [
 .hero-link {
   color: #333;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
   transition: color 0.3s ease;
 }
@@ -228,81 +195,68 @@ const activeServices = [
 
 .hero-image {
   width: 100%;
-  max-width: 1000px;
-  margin-top: 40px;
+  max-width: 800px;
+  margin-top: 30px;
 }
 
 .hero-img {
   width: 100%;
-  height: 500px;
+  height: 350px;
   object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
-/* Services Grid */
+/* Main Content Section */
+.main-content {
+  background: #fff;
+  padding: 60px 20px;
+}
+
+/* Compact Services Grid */
 .services-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
-  background: #fff;
-  color: #333;
+  gap: 40px;
+  margin-bottom: 60px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .service-item {
-  position: relative;
-  overflow: hidden;
-  min-height: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  text-align: left;
-  padding: 60px 40px;
-  height: 100%;
-}
-
-.service-item:nth-child(odd) {
   background: #f8f8f8;
-}
-
-.service-item:nth-child(even) {
-  background: #fff;
-  color: #333;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .service-content {
-  max-width: 400px;
-  z-index: 2;
-  position: relative;
-  margin-bottom: 40px;
-  width: 100%;
-  flex-shrink: 0;
+  padding: 30px;
+  flex: 1;
 }
 
 .service-title {
-  font-size: 3rem;
+  font-size: 2.2rem;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   line-height: 1.1;
   color: #333;
 }
 
 .service-description {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #666;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   line-height: 1.4;
-}
-
-.service-item:nth-child(even) .service-description {
-  color: #666;
 }
 
 .service-link {
   color: #333;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
   transition: color 0.3s ease;
 }
@@ -313,104 +267,79 @@ const activeServices = [
 
 .service-image-container {
   width: 100%;
-  max-width: 500px;
-  position: relative;
+  height: 200px;
   overflow: hidden;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  flex-shrink: 0;
 }
 
 .service-img {
   width: 100%;
-  height: 300px;
+  height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* Feature Section */
-.feature {
-  background: #f5f5f5;
-  color: #333;
-  padding: 120px 20px;
+/* Compact Features Section */
+.features-section {
   text-align: center;
-}
-
-.feature-content {
+  margin-bottom: 50px;
   max-width: 1200px;
-  margin: 0 auto;
-}
-
-.feature-title {
-  font-size: 4rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  line-height: 1.1;
-  color: #333;
-}
-
-.feature-subtitle {
-  font-size: 1.5rem;
-  color: #666;
-  margin-bottom: 80px;
-  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.feature-grid {
+.features-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 40px;
+  line-height: 1.1;
+  color: #333;
+}
+
+.features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
-  margin-top: 60px;
+  gap: 40px;
 }
 
 .feature-item {
   text-align: center;
+  padding: 20px;
 }
 
 .feature-icon {
-  font-size: 3rem;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
 }
 
 .feature-item h3 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: #333;
 }
 
 .feature-item p {
   color: #666;
-  line-height: 1.5;
+  line-height: 1.4;
+  font-size: 0.95rem;
 }
 
-/* CTA Section */
-.cta {
-  background: #fff;
-  color: #333;
-  padding: 120px 20px;
+/* Compact CTA Section */
+.cta-section {
   text-align: center;
-}
-
-.cta-content {
+  padding: 40px 20px;
+  background: #f5f5f5;
+  border-radius: 15px;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto 40px auto;
 }
 
 .cta-title {
-  font-size: 4rem;
+  font-size: 2.2rem;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   line-height: 1.1;
   color: #333;
-}
-
-.cta-subtitle {
-  font-size: 1.5rem;
-  color: #666;
-  margin-bottom: 40px;
 }
 
 .cta-button {
@@ -418,9 +347,9 @@ const activeServices = [
   background: #333;
   color: #fff;
   text-decoration: none;
-  padding: 15px 40px;
+  padding: 15px 35px;
   border-radius: 25px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
   transition: background-color 0.3s ease;
 }
@@ -429,47 +358,75 @@ const activeServices = [
   background: #666;
 }
 
-/* Footer Section */
+/* Compact Footer */
 .footer {
   background: #f5f5f5;
   color: #333;
-  padding: 80px 20px 40px;
+  padding: 40px 20px;
   border-top: 1px solid #e0e0e0;
 }
 
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  gap: 60px;
 }
 
-.footer-section {
-  flex: 1;
-  text-align: left;
+.footer-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
 }
 
-.footer-promo {
-  font-size: 0.85rem;
+.footer-info h3,
+.footer-services h3,
+.footer-newsletter h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.footer-info p {
+  font-size: 0.9rem;
   color: #666;
-  margin-bottom: 20px;
   line-height: 1.4;
-  max-width: none;
+  margin-bottom: 8px;
+}
+
+.service-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.service-tag {
+  background: #fff;
+  color: #666;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  border: 1px solid #e0e0e0;
+}
+
+.footer-newsletter p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 15px;
 }
 
 .newsletter {
   display: flex;
   gap: 8px;
-  max-width: 300px;
+  max-width: 250px;
 }
 
 .email-input {
   flex: 1;
-  padding: 10px 14px;
+  padding: 10px 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   outline: none;
   transition: border-color 0.3s ease;
 }
@@ -481,134 +438,62 @@ const activeServices = [
 .remind-btn {
   background: #333;
   color: #fff;
-  padding: 10px 16px;
+  padding: 10px 14px;
   border: none;
   border-radius: 6px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 .remind-btn:hover {
   background: #666;
 }
 
-.footer-links {
-  flex: 3;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
-  text-align: left;
-}
-
-.footer-column h3 {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-.footer-column h4 {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin: 20px 0 10px 0;
-  color: #333;
-}
-
-.footer-column p {
-  font-size: 0.8rem;
-  color: #666;
-  line-height: 1.4;
-  margin-bottom: 6px;
-}
-
-.footer-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-column li {
-  font-size: 0.8rem;
-  color: #666;
-  margin-bottom: 8px;
-  line-height: 1.3;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.footer-column li:hover {
-  color: #333;
-}
-
-.social-icons {
-  display: flex;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.social-icon {
-  color: #666;
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.social-icon:hover {
-  color: #333;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hero {
+    min-height: 60vh;
+    padding: 30px 20px;
+  }
+
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
   
   .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   
   .services-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .service-item {
-    min-height: 500px;
-    padding: 40px 20px;
+    gap: 30px;
   }
   
   .service-title {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
   
-  .feature-grid {
+  .features-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 30px;
   }
   
-  .feature-title,
+  .features-title,
   .cta-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   
   .hero-links {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
 
-  .footer-links {
-    grid-template-columns: repeat(2, 1fr);
+  .footer-main {
+    grid-template-columns: 1fr;
     gap: 30px;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .footer-section {
     text-align: center;
   }
 
@@ -623,22 +508,16 @@ const activeServices = [
   }
   
   .service-title {
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
   
-  .feature-title,
+  .features-title,
   .cta-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
-  .footer-links {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    text-align: center;
-  }
-
-  .footer-content {
-    gap: 30px;
+  .main-content {
+    padding: 40px 15px;
   }
 
   .newsletter {
