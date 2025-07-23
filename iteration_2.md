@@ -23,12 +23,12 @@ User stories or tasks (see chapter 4):
 In progress:
 * Task-1 (Provider Account Registration), date started 14/07/2025
 * Task-2 (Manage Provider Availability), date started 15/07/2025
-* Task-3 (Provider Login), date started 17/07/2025 -->
+* Task-3 (Provider Login), date started 17/07/2025
 * No any tasks in progress
 
 Completed:
-* Task-1 (Provider Account Registration), date completed xx/xx/2025
-* Task-2 (Manage Provider Availability), date completed xx/xx/2025
+* Task-1 (Provider Account Registration), date completed 23/07/2025
+* Task-2 (Manage Provider Availability), date completed 23/07/2025
 * Task-3 (Provider Login), date completed xx/xx/2025
 
 
@@ -52,12 +52,13 @@ Update this at least once per week
 ### Register
 ![Register](iteation1_images/Register.jpeg)
 
+### Provider Dashboard
+![Provider Dashboard](iteation1_images/ProviderDashboard.jpeg)
+
 ### Service Type - Provider View
 ![Service Type - Provider View](iteation1_images/ServicesType_Provider.jpeg)
 
 ### My Orders - provider view
 ![My Orders - provider view](iteation1_images/MyOrdersProviders.jpeg)
 
-### Provider Dashboard
-![Provider Dashboard](iteation1_images/ProviderDashboard.jpeg)
 
