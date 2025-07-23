@@ -121,35 +121,37 @@ const userRole = ref<'customer' | 'provider'>('customer')
 
 const handleRegister = async () => {
   try {
-    // For demo purposes, we'll simulate registration with role selection
-    const mockUser = {
-      id: Date.now(), // Simple ID generation for demo
+    // Use the real registration from the auth store
+    const userData = await authStore.register({
       email: email.value,
+      password: password.value,
       first_name: firstName.value,
       last_name: lastName.value,
-      is_provider: userRole.value === 'provider',
-      phone: phone.value,
-      created_at: new Date().toISOString()
+      phone: phone.value
+    })
+    
+    // Override the is_provider value based on user's role selection
+    // This allows users to register and immediately access the role they want
+    const userWithSelectedRole = {
+      ...userData,
+      is_provider: userRole.value === 'provider'
     }
+    
+    // Update the stored user data with the selected role
+    localStorage.setItem('user', JSON.stringify(userWithSelectedRole))
+    authStore.initializeAuth() // This will load the updated user from localStorage
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    console.log('Registration successful:', userWithSelectedRole)
 
-    // Store user in auth state
-    localStorage.setItem('user', JSON.stringify(mockUser))
-    authStore.initializeAuth() // This will load the user from localStorage
-
-    console.log('Registration successful:', mockUser)
-
-    // Redirect based on user role
-    if (mockUser.is_provider) {
+    // Redirect based on user's role selection
+    if (userWithSelectedRole.is_provider) {
       router.push('/provider/dashboard')
     } else {
       router.push('/customer/services')
     }
   } catch (error) {
     console.error('Registration error:', error)
-    authStore.error.value = 'Registration failed. Please try again.'
+    // Error is already set in the auth store
   }
 }
 </script>
