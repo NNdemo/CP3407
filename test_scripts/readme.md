@@ -1,10 +1,10 @@
 # MyClean Application Test Script Collection
 
-## 📁 Directory Structure
+##  Directory Structure
 
 This directory contains a comprehensive test suite for the MyClean application, covering backend API testing, frontend UI testing, and various utility tools.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Verify Setup (Recommended to run first)
 ```bash
@@ -25,11 +25,11 @@ C:\Python312\python.exe test_backend_only.py
 C:\Python312\python.exe test_myclean_simple.py
 ```
 
-## 📋 Test Script Documentation
+## Test Script Documentation
 
-### 🔧 Core Test Scripts
+### Core Test Scripts
 
-#### `test_backend_only.py` ⭐ **Recommended**
+#### `test_backend_only.py` **Recommended**
 - **Function**: Dedicated backend API functionality testing
 - **Features**: Most stable and comprehensive backend testing
 - **Test Coverage**:
@@ -39,7 +39,7 @@ C:\Python312\python.exe test_myclean_simple.py
   - Service management (`/api/services`)
   - Order management (`/api/orders`)
 - **Requirements**: Only backend service needs to be running
-- **Expected Result**: 🎉 All backend API tests pass!
+- **Expected Result**: All backend API tests pass!
 
 #### `test_myclean_simple.py`
 - **Function**: Simplified comprehensive testing
@@ -75,7 +75,7 @@ C:\Python312\python.exe test_myclean_simple.py
   - Detailed test report generation
   - Save test results to files
 
-### 🛠️ Utility Tool Scripts
+### Utility Tool Scripts
 
 #### `install_test_dependencies.py`
 - **Function**: Automatically installs required Python dependencies for testing
@@ -123,7 +123,7 @@ C:\Python312\python.exe test_myclean_simple.py
   - Backend file accessibility
 - **When to Use**: After initial setup or when encountering path issues
 
-### 📄 Configuration Files
+### Configuration Files
 
 #### `test_requirements.txt`
 - **Function**: Test dependency package list
@@ -134,7 +134,7 @@ C:\Python312\python.exe test_myclean_simple.py
   webdriver-manager>=4.0.0
   ```
 
-## 📚 Documentation Files
+## Documentation Files
 
 ### `README_Test_Instructions.md`
 - Detailed test usage documentation
@@ -151,9 +151,9 @@ C:\Python312\python.exe test_myclean_simple.py
 - One-click test commands
 - Frequently asked questions
 
-## 🎯 Test Coverage Features
+## Test Coverage Features
 
-### ✅ Fully Tested Features
+### Fully Tested Features
 - **User Management**
   - Customer registration and login
   - Service provider registration and login
@@ -177,13 +177,13 @@ C:\Python312\python.exe test_myclean_simple.py
   - Data integrity checking
   - Relational query testing
 
-### ⏳ Features Requiring Frontend Service
+### Features Requiring Frontend Service
 - User interface interaction testing
 - Form submission validation
 - Page navigation testing
 - Role switching functionality
 
-## 🔧 Environment Requirements
+## Environment Requirements
 
 ### Required Software
 - **Python 3.12** - For running test scripts
@@ -198,7 +198,7 @@ C:\Python312\python.exe test_myclean_simple.py
 - selenium >= 4.15.0 (for UI testing)
 - webdriver-manager >= 4.0.0 (for UI testing)
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Common Issues and Solutions
 
@@ -231,12 +231,12 @@ C:\Python312\python.exe install_test_dependencies.py
 - Check if ChromeDriver is properly installed
 - Can enable headless mode in test scripts
 
-## 📊 Test Execution Records
+## Test Execution Records
 
-### Latest Test Results ✅
+### Latest Test Results
 ```
-[15:26:30] SUCCESS: 🎉 All backend API tests passed!
-✅ Test completed: Backend API functionality normal!
+[15:26:30] SUCCESS: All backend API tests passed!
+ Test completed: Backend API functionality normal!
 
 Test Statistics:
 - Total test items: 5 main functional modules
@@ -250,7 +250,7 @@ Test Statistics:
 - **Orders**: Dynamically generated test orders
 - **Database**: 5 main tables with complete relational structure
 
-## 🎉 Usage Recommendations
+##  Usage Recommendations
 
 ### Daily Development Testing
 1. **Quick Verification**: `test_backend_only.py`
@@ -268,7 +268,7 @@ Test Statistics:
 3. **Fix Database**: `fix_database.py`
 4. **Run Tests**: `test_backend_only.py`
 
-## 📞 Technical Support
+## Technical Support
 
 If you encounter issues:
 1. Check `Quick_Test_Guide.md` for quick solutions
@@ -278,5 +278,5 @@ If you encounter issues:
 ---
 
 **Last Updated**: 2025-07-30
-**Test Status**: ✅ Backend functionality fully operational
-**Maintenance Status**: 🔄 Under continuous maintenance
+**Test Status**: Backend functionality fully operational
+**Maintenance Status**: Under continuous maintenance
