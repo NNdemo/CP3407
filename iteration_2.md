@@ -29,7 +29,7 @@ In progress:
 Completed:
 * Task-1 (Provider Account Registration), date completed 23/07/2025
 * Task-2 (Manage Provider Availability), date completed 23/07/2025
-* Task-3 (Provider Login), date completed xx/xx/2025
+* Task-3 (Provider Login), date completed 30/07/2025
 
 
 
