@@ -17,6 +17,11 @@
 /build
 /dist
 
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
 # Misc
 .DS_Store
 .env
