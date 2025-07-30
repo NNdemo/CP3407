@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
+Test Dependencies Installation Script
 安装测试依赖脚本
-运行方式: C:\\Python312\\python.exe install_test_dependencies.py
+Usage: C:\\Python312\\python.exe install_test_dependencies.py
 """
 
 import subprocess
@@ -9,50 +10,50 @@ import sys
 import os
 
 def install_package(package):
-    """安装Python包"""
+    """Install Python package / 安装Python包"""
     try:
-        print(f"正在安装 {package}...")
-        result = subprocess.run([sys.executable, "-m", "pip", "install", package], 
+        print(f"Installing {package}...")
+        result = subprocess.run([sys.executable, "-m", "pip", "install", package],
                               capture_output=True, text=True, check=True)
-        print(f"✓ {package} 安装成功")
+        print(f"✓ {package} installed successfully")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"✗ {package} 安装失败: {e}")
-        print(f"错误输出: {e.stderr}")
+        print(f"✗ {package} installation failed: {e}")
+        print(f"Error output: {e.stderr}")
         return False
 
 def main():
-    """主函数"""
-    print("MyClean 测试依赖安装脚本")
+    """Main function / 主函数"""
+    print("MyClean Test Dependencies Installation Script")
     print("=" * 40)
-    
-    # 需要安装的包
+
+    # Packages to install / 需要安装的包
     packages = [
         "requests>=2.31.0",
         "selenium>=4.15.0",
         "webdriver-manager>=4.0.0"
     ]
-    
+
     success_count = 0
     total_count = len(packages)
-    
+
     for package in packages:
         if install_package(package):
             success_count += 1
-    
+
     print("\n" + "=" * 40)
-    print(f"安装完成: {success_count}/{total_count} 个包安装成功")
-    
+    print(f"Installation completed: {success_count}/{total_count} packages installed successfully")
+
     if success_count == total_count:
-        print("✅ 所有依赖安装成功！")
-        print("\n现在可以运行测试脚本:")
+        print("✅ All dependencies installed successfully!")
+        print("\nNow you can run test scripts:")
         print("C:\\Python312\\python.exe test_myclean_simple.py")
-        print("或")
+        print("or")
         print("C:\\Python312\\python.exe test_myclean_app.py")
     else:
-        print("❌ 部分依赖安装失败，请检查网络连接或Python环境")
+        print("❌ Some dependencies failed to install, please check network connection or Python environment")
         return 1
-    
+
     return 0
 
 if __name__ == "__main__":

@@ -2,8 +2,9 @@
 """
 MyClean Application Simple Test Script
 简化版测试脚本，专注于核心功能测试
+Simplified test script focusing on core functionality testing
 
-运行方式: C:\\Python312\\python.exe test_myclean_simple.py
+Usage: C:\\Python312\\python.exe test_myclean_simple.py
 """
 
 import requests
@@ -13,7 +14,7 @@ import random
 import string
 from datetime import datetime, date, timedelta
 
-# 配置
+# Configuration / 配置
 BACKEND_URL = "http://localhost:8000"
 FRONTEND_URL = "http://localhost:5173"
 
@@ -21,9 +22,9 @@ class TestRunner:
     def __init__(self):
         self.session = requests.Session()
         self.test_users = []
-        
+
     def log(self, message, level="INFO"):
-        """简单的日志输出"""
+        """Simple log output / 简单的日志输出"""
         timestamp = datetime.now().strftime("%H:%M:%S")
         print(f"[{timestamp}] {level}: {message}")
     

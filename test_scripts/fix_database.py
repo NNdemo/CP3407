@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+Database Repair Tool
 修复数据库问题
 """
 
@@ -12,19 +13,19 @@ def hash_password(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
 
 def create_fresh_database():
-    """创建全新的数据库"""
+    """Create fresh database / 创建全新的数据库"""
     db_path = "../backend/myclean.db"
-    
-    # 删除现有数据库
+
+    # Remove existing database / 删除现有数据库
     if os.path.exists(db_path):
         os.remove(db_path)
-        print("删除旧数据库")
-    
-    # 创建新数据库
+        print("Removed old database")
+
+    # Create new database / 创建新数据库
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    
-    # 创建users表
+
+    # Create users table / 创建users表
     cursor.execute('''
         CREATE TABLE users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -40,7 +41,7 @@ def create_fresh_database():
         )
     ''')
     
-    # 创建service_categories表
+    # Create service_categories table / 创建service_categories表
     cursor.execute('''
         CREATE TABLE service_categories (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -50,8 +51,8 @@ def create_fresh_database():
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     ''')
-    
-    # 创建service_types表
+
+    # Create service_types table / 创建service_types表
     cursor.execute('''
         CREATE TABLE service_types (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -64,8 +65,8 @@ def create_fresh_database():
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     ''')
-    
-    # 创建service_durations表
+
+    # Create service_durations table / 创建service_durations表
     cursor.execute('''
         CREATE TABLE service_durations (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -76,8 +77,8 @@ def create_fresh_database():
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     ''')
-    
-    # 创建orders表
+
+    # Create orders table / 创建orders表
     cursor.execute('''
         CREATE TABLE orders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -101,10 +102,10 @@ def create_fresh_database():
         )
     ''')
     
-    # 插入初始数据
-    print("插入初始数据...")
-    
-    # 插入服务分类
+    # Insert initial data / 插入初始数据
+    print("Inserting initial data...")
+
+    # Insert service categories / 插入服务分类
     categories = [
         ('Flowers', 'Fresh flowers and bouquet delivery services'),
         ('Cleaning', 'Professional cleaning services'),
@@ -112,7 +113,7 @@ def create_fresh_database():
     ]
     cursor.executemany('INSERT INTO service_categories (name, description) VALUES (?, ?)', categories)
     
-    # 插入服务类型
+    # Insert service types / 插入服务类型
     services = [
         (1, 'Fresh Flowers', 'Beautiful fresh flower arrangements', 21.00, 60),
         (1, 'Dried Flowers', 'Long-lasting dried flower arrangements', 25.00, 60),
@@ -126,7 +127,7 @@ def create_fresh_database():
         VALUES (?, ?, ?, ?, ?)
     ''', services)
     
-    # 插入服务时长
+    # Insert service durations / 插入服务时长
     durations = [
         (1, 60, '1 hour', 1.00),
         (1, 120, '2 hours', 1.50),
@@ -144,7 +145,7 @@ def create_fresh_database():
         VALUES (?, ?, ?, ?)
     ''', durations)
     
-    # 插入测试用户
+    # Insert test users / 插入测试用户
     test_users = [
         ('customer@test.com', '1234567890', hash_password('password123'), 'John', 'Doe', 1, 0),
         ('provider@test.com', '0987654321', hash_password('password123'), 'Jane', 'Smith', 1, 1)
@@ -157,48 +158,48 @@ def create_fresh_database():
     conn.commit()
     conn.close()
     
-    print("✅ 数据库创建成功！")
+    print("✅ Database created successfully!")
     return True
 
 def test_database():
-    """测试数据库"""
+    """Test database / 测试数据库"""
     db_path = "../backend/myclean.db"
-    
+
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
-        
-        # 测试查询
+
+        # Test queries / 测试查询
         cursor.execute("SELECT COUNT(*) FROM users")
         user_count = cursor.fetchone()[0]
-        
+
         cursor.execute("SELECT COUNT(*) FROM service_types")
         service_count = cursor.fetchone()[0]
-        
+
         cursor.execute("SELECT COUNT(*) FROM service_durations")
         duration_count = cursor.fetchone()[0]
-        
-        print(f"✅ 数据库测试成功:")
-        print(f"  - 用户: {user_count}")
-        print(f"  - 服务: {service_count}")
-        print(f"  - 时长选项: {duration_count}")
-        
+
+        print(f"✅ Database test successful:")
+        print(f"  - Users: {user_count}")
+        print(f"  - Services: {service_count}")
+        print(f"  - Duration options: {duration_count}")
+
         conn.close()
         return True
-        
+
     except Exception as e:
-        print(f"❌ 数据库测试失败: {e}")
+        print(f"❌ Database test failed: {e}")
         return False
 
 def main():
-    print("MyClean 数据库修复工具")
+    print("MyClean Database Repair Tool")
     print("=" * 30)
-    
+
     if create_fresh_database():
         test_database()
-        print("\n🎉 数据库修复完成！")
+        print("\n🎉 Database repair completed!")
     else:
-        print("\n❌ 数据库修复失败")
+        print("\n❌ Database repair failed")
 
 if __name__ == "__main__":
     main()

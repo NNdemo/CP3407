@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+Backend API Debug Script
 调试后端API的脚本
 """
 
@@ -9,35 +10,35 @@ import json
 BACKEND_URL = "http://localhost:8000"
 
 def test_health():
-    """测试健康检查"""
+    """Test health check / 测试健康检查"""
     try:
         response = requests.get(f"{BACKEND_URL}/api/health")
-        print(f"健康检查: {response.status_code}")
-        print(f"响应: {response.text}")
+        print(f"Health check: {response.status_code}")
+        print(f"Response: {response.text}")
         return response.status_code == 200
     except Exception as e:
-        print(f"健康检查失败: {e}")
+        print(f"Health check failed: {e}")
         return False
 
 def test_services():
-    """测试服务列表"""
+    """Test service list / 测试服务列表"""
     try:
         response = requests.get(f"{BACKEND_URL}/api/services")
-        print(f"服务列表: {response.status_code}")
+        print(f"Service list: {response.status_code}")
         if response.status_code == 200:
             services = response.json()
-            print(f"找到 {len(services)} 个服务")
+            print(f"Found {len(services)} services")
             for service in services[:2]:
                 print(f"  - {service['name']}: ${service['base_price']}")
         else:
-            print(f"错误响应: {response.text}")
+            print(f"Error response: {response.text}")
         return response.status_code == 200
     except Exception as e:
-        print(f"服务列表测试失败: {e}")
+        print(f"Service list test failed: {e}")
         return False
 
 def test_register():
-    """测试用户注册"""
+    """Test user registration / 测试用户注册"""
     user_data = {
         "email": "debug_test@example.com",
         "password": "password123",
@@ -45,36 +46,36 @@ def test_register():
         "last_name": "Test",
         "phone": "+1234567890"
     }
-    
+
     try:
         response = requests.post(f"{BACKEND_URL}/api/auth/register", json=user_data)
-        print(f"用户注册: {response.status_code}")
+        print(f"User registration: {response.status_code}")
         if response.status_code == 200:
             user = response.json()
-            print(f"注册成功: {user['email']}")
+            print(f"Registration successful: {user['email']}")
         else:
-            print(f"注册失败: {response.text}")
+            print(f"Registration failed: {response.text}")
         return response.status_code == 200
     except Exception as e:
-        print(f"注册测试失败: {e}")
+        print(f"Registration test failed: {e}")
         return False
 
 def main():
-    print("MyClean 后端调试脚本")
+    print("MyClean Backend Debug Script")
     print("=" * 30)
-    
-    print("\n1. 测试健康检查...")
+
+    print("\n1. Testing health check...")
     if not test_health():
-        print("后端服务不可用")
+        print("Backend service unavailable")
         return
-    
-    print("\n2. 测试服务列表...")
+
+    print("\n2. Testing service list...")
     test_services()
-    
-    print("\n3. 测试用户注册...")
+
+    print("\n3. Testing user registration...")
     test_register()
-    
-    print("\n调试完成")
+
+    print("\nDebug completed")
 
 if __name__ == "__main__":
     main()

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+Database Structure and Content Checker
 检查数据库结构和内容
 """
 
@@ -9,75 +10,75 @@ import os
 def check_database():
     db_path = "../backend/myclean.db"
 
-    print(f"检查数据库: {db_path}")
+    print(f"Checking database: {db_path}")
 
     if not os.path.exists(db_path):
-        print("❌ 数据库文件不存在")
+        print("❌ Database file does not exist")
         return False
 
     try:
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
 
-        # 检查表结构
+        # Check table structure / 检查表结构
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
         tables = cursor.fetchall()
-        print(f"✓ 数据库连接成功，找到 {len(tables)} 个表:")
+        print(f"✓ Database connection successful, found {len(tables)} tables:")
         for table in tables:
             print(f"  - {table[0]}")
 
-        # 检查users表结构
+        # Check users table structure / 检查users表结构
         if ('users',) in tables:
             cursor.execute("PRAGMA table_info(users)")
             columns = cursor.fetchall()
-            print(f"\n✓ users表结构 ({len(columns)} 列):")
+            print(f"\n✓ Users table structure ({len(columns)} columns):")
             for col in columns:
                 nullable = "NULL" if not col[3] else "NOT NULL"
                 pk = "PRIMARY KEY" if col[5] else ""
                 print(f"  {col[1]} {col[2]} {nullable} {pk}")
 
-            # 检查users表数据
+            # Check users table data / 检查users表数据
             cursor.execute("SELECT COUNT(*) FROM users")
             count = cursor.fetchone()[0]
-            print(f"\n✓ users表中有 {count} 条记录")
+            print(f"\n✓ Users table has {count} records")
 
             if count > 0:
                 cursor.execute("SELECT id, email, first_name, last_name, is_provider FROM users LIMIT 5")
                 users = cursor.fetchall()
-                print("前5个用户:")
+                print("First 5 users:")
                 for user in users:
                     print(f"  ID: {user[0]}, Email: {user[1]}, Name: {user[2]} {user[3]}, Provider: {user[4]}")
         else:
-            print("❌ users表不存在")
+            print("❌ Users table does not exist")
             return False
 
-        # 检查service_types表
+        # Check service_types table / 检查service_types表
         if ('service_types',) in tables:
             cursor.execute("SELECT COUNT(*) FROM service_types")
             count = cursor.fetchone()[0]
-            print(f"\n✓ service_types表中有 {count} 条记录")
+            print(f"\n✓ Service_types table has {count} records")
 
             if count > 0:
                 cursor.execute("SELECT id, name, base_price FROM service_types LIMIT 3")
                 services = cursor.fetchall()
-                print("前3个服务:")
+                print("First 3 services:")
                 for service in services:
                     print(f"  ID: {service[0]}, Name: {service[1]}, Price: ${service[2]}")
         else:
-            print("❌ service_types表不存在")
+            print("❌ Service_types table does not exist")
 
         conn.close()
         return True
 
     except Exception as e:
-        print(f"❌ 数据库检查失败: {e}")
+        print(f"❌ Database check failed: {e}")
         return False
 
 if __name__ == "__main__":
-    print("MyClean 数据库检查工具")
+    print("MyClean Database Check Tool")
     print("=" * 30)
     success = check_database()
     if success:
-        print("\n✅ 数据库检查完成")
+        print("\n✅ Database check completed")
     else:
-        print("\n❌ 数据库检查失败")
+        print("\n❌ Database check failed")

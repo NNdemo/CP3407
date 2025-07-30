@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
+MyClean Frontend UI Test Script
 MyClean 前端UI测试脚本
+Test frontend user interface functions
 测试前端用户界面功能
 
-运行方式: C:\\Python312\\python.exe test_frontend_ui.py
+Usage: C:\\Python312\\python.exe test_frontend_ui.py
 """
 
 import time
@@ -18,7 +20,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import requests
 
-# 配置
+# Configuration / 配置
 FRONTEND_URL = "http://localhost:5173"
 BACKEND_URL = "http://localhost:8000"
 WAIT_TIMEOUT = 10

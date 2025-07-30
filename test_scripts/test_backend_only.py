@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
+MyClean Backend API Test Script
 MyClean 后端API测试脚本
+Test backend API functions only, no frontend required
 仅测试后端API功能，不需要前端运行
 
-运行方式: C:\\Python312\\python.exe test_backend_only.py
+Usage: C:\\Python312\\python.exe test_backend_only.py
 """
 
 import requests
@@ -16,7 +18,7 @@ import subprocess
 import sys
 import os
 
-# 配置
+# Configuration / 配置
 BACKEND_URL = "http://localhost:8000"
 
 class BackendTester:
@@ -24,92 +26,92 @@ class BackendTester:
         self.session = requests.Session()
         self.test_users = []
         self.backend_process = None
-        
+
     def log(self, message, level="INFO"):
-        """简单的日志输出"""
+        """Simple log output / 简单的日志输出"""
         timestamp = datetime.now().strftime("%H:%M:%S")
         colors = {
             "INFO": "",
-            "SUCCESS": "\033[92m",  # 绿色
-            "ERROR": "\033[91m",    # 红色
-            "WARNING": "\033[93m"   # 黄色
+            "SUCCESS": "\033[92m",  # Green / 绿色
+            "ERROR": "\033[91m",    # Red / 红色
+            "WARNING": "\033[93m"   # Yellow / 黄色
         }
         end_color = "\033[0m" if level in colors else ""
         color = colors.get(level, "")
         print(f"[{timestamp}] {color}{level}: {message}{end_color}")
-    
+
     def start_backend(self):
-        """启动后端服务"""
-        self.log("启动后端服务...")
+        """Start backend service / 启动后端服务"""
+        self.log("Starting backend service...")
         try:
             backend_dir = os.path.join(os.path.dirname(__file__), "..", "backend")
             main_py = os.path.join(backend_dir, "main.py")
-            
+
             if not os.path.exists(main_py):
-                self.log("找不到backend/main.py文件", "ERROR")
+                self.log("Cannot find backend/main.py file", "ERROR")
                 return False
             
-            # 启动后端进程
+            # Start backend process / 启动后端进程
             self.backend_process = subprocess.Popen(
                 [sys.executable, main_py],
                 cwd=backend_dir,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE
             )
-            
-            # 等待服务启动
-            self.log("等待后端服务启动...")
+
+            # Wait for service to start / 等待服务启动
+            self.log("Waiting for backend service to start...")
             for i in range(10):
                 time.sleep(2)
                 try:
                     response = requests.get(f"{BACKEND_URL}/api/health", timeout=5)
                     if response.status_code == 200:
-                        self.log("后端服务启动成功", "SUCCESS")
+                        self.log("Backend service started successfully", "SUCCESS")
                         return True
                 except:
                     continue
-            
-            self.log("后端服务启动超时", "ERROR")
+
+            self.log("Backend service startup timeout", "ERROR")
             return False
-            
+
         except Exception as e:
-            self.log(f"启动后端服务失败: {e}", "ERROR")
+            self.log(f"Failed to start backend service: {e}", "ERROR")
             return False
-    
+
     def stop_backend(self):
-        """停止后端服务"""
+        """Stop backend service / 停止后端服务"""
         if self.backend_process:
-            self.log("停止后端服务...")
+            self.log("Stopping backend service...")
             self.backend_process.terminate()
             self.backend_process.wait()
-            self.log("后端服务已停止", "INFO")
-    
+            self.log("Backend service stopped", "INFO")
+
     def generate_test_email(self):
-        """生成测试邮箱"""
+        """Generate test email / 生成测试邮箱"""
         random_str = ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))
         return f"test_{random_str}@example.com"
-    
+
     def test_health_check(self):
-        """测试健康检查"""
-        self.log("测试后端健康状态...")
+        """Test health check / 测试健康检查"""
+        self.log("Testing backend health status...")
         try:
             response = self.session.get(f"{BACKEND_URL}/api/health", timeout=10)
             if response.status_code == 200:
                 data = response.json()
-                self.log(f"✓ 后端健康检查通过: {data.get('status', 'unknown')}", "SUCCESS")
+                self.log(f"✓ Backend health check passed: {data.get('status', 'unknown')}", "SUCCESS")
                 return True
             else:
-                self.log(f"✗ 后端健康检查失败: {response.status_code}", "ERROR")
+                self.log(f"✗ Backend health check failed: {response.status_code}", "ERROR")
                 return False
         except Exception as e:
-            self.log(f"✗ 后端连接失败: {e}", "ERROR")
+            self.log(f"✗ Backend connection failed: {e}", "ERROR")
             return False
-    
+
     def test_user_registration(self):
-        """测试用户注册"""
-        self.log("测试用户注册...")
-        
-        # 测试客户注册
+        """Test user registration / 测试用户注册"""
+        self.log("Testing user registration...")
+
+        # Test customer registration / 测试客户注册
         customer_email = self.generate_test_email()
         customer_data = {
             "email": customer_email,
@@ -129,19 +131,19 @@ class BackendTester:
                     "role": "customer",
                     "data": user_data
                 })
-                self.log(f"✓ 客户注册成功: {customer_email}", "SUCCESS")
+                self.log(f"✓ Customer registration successful: {customer_email}", "SUCCESS")
             else:
-                self.log(f"✗ 客户注册失败: {response.status_code} - {response.text}", "ERROR")
+                self.log(f"✗ Customer registration failed: {response.status_code} - {response.text}", "ERROR")
                 return False
         except Exception as e:
-            self.log(f"✗ 客户注册异常: {e}", "ERROR")
+            self.log(f"✗ Customer registration exception: {e}", "ERROR")
             return False
-        
+
         return True
-    
+
     def test_user_login(self):
-        """测试用户登录"""
-        self.log("测试用户登录...")
+        """Test user login / 测试用户登录"""
+        self.log("Testing user login...")
         
         for user in self.test_users:
             try:
@@ -318,28 +320,28 @@ class BackendTester:
                 self.stop_backend()
 
 def main():
-    """主函数"""
-    print("MyClean 后端API测试脚本")
+    """Main function / 主函数"""
+    print("MyClean Backend API Test Script")
     print("=" * 40)
-    
+
     tester = BackendTester()
-    
+
     try:
         success = tester.run_all_tests()
-        
+
         if success:
-            print("\n✅ 测试完成：后端API功能正常！")
+            print("\n✅ Test completed: Backend API functions normally!")
             return 0
         else:
-            print("\n❌ 测试失败：请检查后端状态")
+            print("\n❌ Test failed: Please check backend status")
             return 1
-            
+
     except KeyboardInterrupt:
-        print("\n\n⚠️ 测试被用户中断")
+        print("\n\n⚠️ Test interrupted by user")
         tester.stop_backend()
         return 1
     except Exception as e:
-        print(f"\n❌ 测试脚本异常: {e}")
+        print(f"\n❌ Test script exception: {e}")
         import traceback
         traceback.print_exc()
         tester.stop_backend()
