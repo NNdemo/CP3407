@@ -1,282 +1,282 @@
-# MyClean 应用测试脚本集合
+# MyClean Application Test Script Collection
 
-## 📁 目录结构
+## 📁 Directory Structure
 
-本目录包含了 MyClean 应用的完整测试套件，涵盖后端 API 测试、前端 UI 测试以及各种辅助工具。
+This directory contains a comprehensive test suite for the MyClean application, covering backend API testing, frontend UI testing, and various utility tools.
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 1. 验证设置（推荐首先运行）
+### 1. Verify Setup (Recommended to run first)
 ```bash
 C:\Python312\python.exe verify_setup.py
 ```
 
-### 2. 安装测试依赖
+### 2. Install Test Dependencies
 ```bash
 C:\Python312\python.exe install_test_dependencies.py
 ```
 
-### 3. 运行推荐测试
+### 3. Run Recommended Tests
 ```bash
-# 后端 API 测试（推荐首先运行）
+# Backend API Test (Recommended to run first)
 C:\Python312\python.exe test_backend_only.py
 
-# 简化版综合测试
+# Simplified Comprehensive Test
 C:\Python312\python.exe test_myclean_simple.py
 ```
 
-## 📋 测试脚本说明
+## 📋 Test Script Documentation
 
-### 🔧 核心测试脚本
+### 🔧 Core Test Scripts
 
-#### `test_backend_only.py` ⭐ **推荐**
-- **功能**: 专门测试后端 API 功能
-- **特点**: 最稳定、最全面的后端测试
-- **测试内容**:
-  - 健康检查 (`/api/health`)
-  - 用户注册 (`/api/auth/register`)
-  - 用户登录 (`/api/auth/login`)
-  - 服务管理 (`/api/services`)
-  - 订单管理 (`/api/orders`)
-- **运行条件**: 仅需后端服务运行
-- **预期结果**: 🎉 所有后端API测试通过！
+#### `test_backend_only.py` ⭐ **Recommended**
+- **Function**: Dedicated backend API functionality testing
+- **Features**: Most stable and comprehensive backend testing
+- **Test Coverage**:
+  - Health check (`/api/health`)
+  - User registration (`/api/auth/register`)
+  - User login (`/api/auth/login`)
+  - Service management (`/api/services`)
+  - Order management (`/api/orders`)
+- **Requirements**: Only backend service needs to be running
+- **Expected Result**: 🎉 All backend API tests pass!
 
 #### `test_myclean_simple.py`
-- **功能**: 简化版综合测试
-- **特点**: 快速验证核心功能
-- **测试内容**: 后端 API + 前端健康检查
-- **运行条件**: 后端服务必须运行，前端可选
-- **适用场景**: 快速验证应用状态
+- **Function**: Simplified comprehensive testing
+- **Features**: Quick verification of core functionality
+- **Test Coverage**: Backend API + Frontend health check
+- **Requirements**: Backend service must be running, frontend optional
+- **Use Case**: Quick application status verification
 
 #### `test_frontend_ui.py`
-- **功能**: 前端用户界面自动化测试
-- **特点**: 使用 Selenium WebDriver 进行 UI 测试
-- **测试内容**:
-  - 页面导航测试
-  - 用户注册表单
-  - 用户登录表单
-  - 服务页面浏览
-- **运行条件**: 需要前端服务 + Chrome 浏览器
-- **依赖**: selenium, webdriver-manager
+- **Function**: Frontend user interface automation testing
+- **Features**: Uses Selenium WebDriver for UI testing
+- **Test Coverage**:
+  - Page navigation testing
+  - User registration forms
+  - User login forms
+  - Service page browsing
+- **Requirements**: Frontend service + Chrome browser required
+- **Dependencies**: selenium, webdriver-manager
 
 #### `test_myclean_app.py`
-- **功能**: 完整的前端和后端测试
-- **特点**: 最全面的测试覆盖
-- **测试内容**: 包含所有功能模块的测试
-- **运行条件**: 前端和后端服务都必须运行
-- **适用场景**: 完整的回归测试
+- **Function**: Complete frontend and backend testing
+- **Features**: Most comprehensive test coverage
+- **Test Coverage**: Includes all functional module tests
+- **Requirements**: Both frontend and backend services must be running
+- **Use Case**: Complete regression testing
 
 #### `run_all_tests.py`
-- **功能**: 综合测试套件管理器
-- **特点**: 自动运行多个测试脚本并生成报告
-- **功能**:
-  - 自动检测服务状态
-  - 批量运行测试
-  - 生成详细测试报告
-  - 保存测试结果到文件
+- **Function**: Comprehensive test suite manager
+- **Features**: Automatically runs multiple test scripts and generates reports
+- **Capabilities**:
+  - Automatic service status detection
+  - Batch test execution
+  - Detailed test report generation
+  - Save test results to files
 
-### 🛠️ 辅助工具脚本
+### 🛠️ Utility Tool Scripts
 
 #### `install_test_dependencies.py`
-- **功能**: 自动安装测试所需的 Python 依赖包
-- **安装包**: requests, selenium, webdriver-manager
-- **使用时机**: 首次运行测试前
+- **Function**: Automatically installs required Python dependencies for testing
+- **Packages**: requests, selenium, webdriver-manager
+- **When to Use**: Before running tests for the first time
 
 #### `debug_backend.py`
-- **功能**: 后端 API 调试工具
-- **特点**: 快速诊断后端问题
-- **测试项目**:
-  - 健康检查
-  - 服务列表获取
-  - 用户注册测试
-- **适用场景**: 后端出现问题时的快速诊断
+- **Function**: Backend API debugging tool
+- **Features**: Quick diagnosis of backend issues
+- **Test Items**:
+  - Health check
+  - Service list retrieval
+  - User registration testing
+- **Use Case**: Quick diagnosis when backend issues occur
 
 #### `fix_database.py`
-- **功能**: 数据库修复和重建工具
-- **特点**: 解决数据库相关问题
-- **功能**:
-  - 删除旧数据库
-  - 创建新的数据库结构
-  - 插入初始测试数据
-- **使用时机**: 数据库损坏或结构问题时
+- **Function**: Database repair and rebuild tool
+- **Features**: Resolves database-related issues
+- **Capabilities**:
+  - Delete old database
+  - Create new database structure
+  - Insert initial test data
+- **When to Use**: When database is corrupted or has structural issues
 
 #### `check_database.py`
-- **功能**: 数据库状态检查工具
-- **特点**: 非破坏性检查
-- **检查内容**:
-  - 数据库连接状态
-  - 表结构完整性
-  - 数据记录统计
-- **适用场景**: 验证数据库状态
+- **Function**: Database status checking tool
+- **Features**: Non-destructive checking
+- **Check Items**:
+  - Database connection status
+  - Table structure integrity
+  - Data record statistics
+- **Use Case**: Verify database status
 
 #### `start_backend.py`
-- **功能**: 后端服务启动辅助脚本
-- **特点**: 简化后端启动流程
-- **功能**: 自动切换到后端目录并启动服务
+- **Function**: Backend service startup helper script
+- **Features**: Simplifies backend startup process
+- **Capability**: Automatically switches to backend directory and starts service
 
 #### `verify_setup.py`
-- **功能**: 验证测试环境设置
-- **特点**: 检查所有文件是否正确配置
-- **检查内容**:
-  - 测试脚本完整性
-  - 文档文件存在性
-  - 后端文件可访问性
-- **使用时机**: 首次设置后或遇到路径问题时
+- **Function**: Verify test environment setup
+- **Features**: Checks if all files are properly configured
+- **Check Items**:
+  - Test script integrity
+  - Documentation file existence
+  - Backend file accessibility
+- **When to Use**: After initial setup or when encountering path issues
 
-### 📄 配置文件
+### 📄 Configuration Files
 
 #### `test_requirements.txt`
-- **功能**: 测试依赖包列表
-- **内容**:
+- **Function**: Test dependency package list
+- **Contents**:
   ```
   requests>=2.31.0
   selenium>=4.15.0
   webdriver-manager>=4.0.0
   ```
 
-## 📚 文档文件
+## 📚 Documentation Files
 
-### `README_测试说明.md`
-- 详细的测试使用说明文档
-- 包含完整的安装和使用指南
-- 故障排除指南
+### `README_Test_Instructions.md`
+- Detailed test usage documentation
+- Complete installation and usage guide
+- Troubleshooting guide
 
-### `测试结果报告.md`
-- 完整的测试执行报告
-- 测试结果统计和分析
-- 问题解决记录
+### `Test_Results_Report.md`
+- Complete test execution report
+- Test result statistics and analysis
+- Problem resolution records
 
-### `快速测试指南.md`
-- 快速上手指南
-- 一键测试命令
-- 常见问题解答
+### `Quick_Test_Guide.md`
+- Quick start guide
+- One-click test commands
+- Frequently asked questions
 
-## 🎯 测试覆盖功能
+## 🎯 Test Coverage Features
 
-### ✅ 已完全测试的功能
-- **用户管理**
-  - 客户注册和登录
-  - 服务提供者注册和登录
-  - 密码哈希和验证
+### ✅ Fully Tested Features
+- **User Management**
+  - Customer registration and login
+  - Service provider registration and login
+  - Password hashing and verification
 
-- **服务管理**
-  - 服务列表获取 (6个服务类型)
-  - 服务分类 (Flowers, Cleaning, Gifts)
-  - 服务时长选项 (10个配置)
-  - 价格计算和倍数处理
+- **Service Management**
+  - Service list retrieval (6 service types)
+  - Service categorization (Flowers, Cleaning, Gifts)
+  - Service duration options (10 configurations)
+  - Price calculation and multiplier handling
 
-- **订单管理**
-  - 订单创建和验证
-  - 订单号生成
-  - 价格计算
-  - 时间处理
-  - 订单状态管理
+- **Order Management**
+  - Order creation and validation
+  - Order number generation
+  - Price calculation
+  - Time handling
+  - Order status management
 
-- **数据库操作**
-  - CRUD 操作验证
-  - 数据完整性检查
-  - 关联查询测试
+- **Database Operations**
+  - CRUD operation verification
+  - Data integrity checking
+  - Relational query testing
 
-### ⏳ 需要前端服务的功能
-- 用户界面交互测试
-- 表单提交验证
-- 页面导航测试
-- 角色切换功能
+### ⏳ Features Requiring Frontend Service
+- User interface interaction testing
+- Form submission validation
+- Page navigation testing
+- Role switching functionality
 
-## 🔧 环境要求
+## 🔧 Environment Requirements
 
-### 必需软件
-- **Python 3.12** - 运行测试脚本
-- **Chrome 浏览器** - 前端 UI 测试 (可选)
+### Required Software
+- **Python 3.12** - For running test scripts
+- **Chrome Browser** - For frontend UI testing (optional)
 
-### 服务要求
-- **后端服务**: http://localhost:8000 (必需)
-- **前端服务**: http://localhost:5173 (UI测试需要)
+### Service Requirements
+- **Backend Service**: http://localhost:8000 (required)
+- **Frontend Service**: http://localhost:5173 (required for UI testing)
 
-### Python 依赖
+### Python Dependencies
 - requests >= 2.31.0
-- selenium >= 4.15.0 (UI测试)
-- webdriver-manager >= 4.0.0 (UI测试)
+- selenium >= 4.15.0 (for UI testing)
+- webdriver-manager >= 4.0.0 (for UI testing)
 
-## 🚨 故障排除
+## 🚨 Troubleshooting
 
-### 常见问题及解决方案
+### Common Issues and Solutions
 
-#### 1. 后端连接失败
+#### 1. Backend Connection Failed
 ```bash
-# 检查后端服务状态
+# Check backend service status
 C:\Python312\python.exe debug_backend.py
 
-# 如果数据库有问题，修复数据库
+# If database issues, repair database
 C:\Python312\python.exe fix_database.py
 ```
 
-#### 2. 数据库错误 (500 Internal Server Error)
+#### 2. Database Error (500 Internal Server Error)
 ```bash
-# 重建数据库
+# Rebuild database
 C:\Python312\python.exe fix_database.py
 
-# 检查数据库状态
+# Check database status
 C:\Python312\python.exe check_database.py
 ```
 
-#### 3. 依赖包缺失
+#### 3. Missing Dependencies
 ```bash
-# 重新安装依赖
+# Reinstall dependencies
 C:\Python312\python.exe install_test_dependencies.py
 ```
 
-#### 4. Chrome 浏览器问题
-- 确保已安装 Chrome 浏览器
-- 检查 ChromeDriver 是否正确安装
-- 可以在测试脚本中启用无头模式
+#### 4. Chrome Browser Issues
+- Ensure Chrome browser is installed
+- Check if ChromeDriver is properly installed
+- Can enable headless mode in test scripts
 
-## 📊 测试执行记录
+## 📊 Test Execution Records
 
-### 最近测试结果 ✅
+### Latest Test Results ✅
 ```
-[15:26:30] SUCCESS: 🎉 所有后端API测试通过！
-✅ 测试完成：后端API功能正常！
+[15:26:30] SUCCESS: 🎉 All backend API tests passed!
+✅ Test completed: Backend API functionality normal!
 
-测试统计:
-- 总测试项: 5个主要功能模块
-- 通过测试: 5/5 (100%)
-- 失败测试: 0/5 (0%)
+Test Statistics:
+- Total test items: 5 main functional modules
+- Passed tests: 5/5 (100%)
+- Failed tests: 0/5 (0%)
 ```
 
-### 测试数据示例
-- **用户**: 2个预置用户 + 动态生成测试用户
-- **服务**: 6个服务类型 (Fresh Flowers $21.0, Dried Flowers $25.0, 等)
-- **订单**: 动态生成测试订单
-- **数据库**: 5个主要表，完整关联结构
+### Test Data Examples
+- **Users**: 2 preset users + dynamically generated test users
+- **Services**: 6 service types (Fresh Flowers $21.0, Dried Flowers $25.0, etc.)
+- **Orders**: Dynamically generated test orders
+- **Database**: 5 main tables with complete relational structure
 
-## 🎉 使用建议
+## 🎉 Usage Recommendations
 
-### 日常开发测试
-1. **快速验证**: `test_backend_only.py`
-2. **问题诊断**: `debug_backend.py`
-3. **数据库问题**: `fix_database.py`
+### Daily Development Testing
+1. **Quick Verification**: `test_backend_only.py`
+2. **Issue Diagnosis**: `debug_backend.py`
+3. **Database Issues**: `fix_database.py`
 
-### 完整回归测试
-1. **启动服务**: 后端 + 前端
-2. **运行测试**: `run_all_tests.py`
-3. **查看报告**: 检查生成的测试报告
+### Complete Regression Testing
+1. **Start Services**: Backend + Frontend
+2. **Run Tests**: `run_all_tests.py`
+3. **View Reports**: Check generated test reports
 
-### 首次使用
-1. **验证设置**: `verify_setup.py`
-2. **安装依赖**: `install_test_dependencies.py`
-3. **修复数据库**: `fix_database.py`
-4. **运行测试**: `test_backend_only.py`
+### First-Time Usage
+1. **Verify Setup**: `verify_setup.py`
+2. **Install Dependencies**: `install_test_dependencies.py`
+3. **Fix Database**: `fix_database.py`
+4. **Run Tests**: `test_backend_only.py`
 
-## 📞 技术支持
+## 📞 Technical Support
 
-如果遇到问题：
-1. 查看 `快速测试指南.md` 获取快速解决方案
-2. 查看 `README_测试说明.md` 获取详细说明
-3. 查看 `测试结果报告.md` 了解已知问题和解决方案
+If you encounter issues:
+1. Check `Quick_Test_Guide.md` for quick solutions
+2. Check `README_Test_Instructions.md` for detailed instructions
+3. Check `Test_Results_Report.md` for known issues and solutions
 
 ---
 
-**最后更新**: 2025-07-23
-**测试状态**: ✅ 后端功能完全正常
-**维护状态**: 🔄 持续维护中
+**Last Updated**: 2025-07-30
+**Test Status**: ✅ Backend functionality fully operational
+**Maintenance Status**: 🔄 Under continuous maintenance
