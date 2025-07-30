@@ -1,0 +1,43 @@
+PS D:\Semaster_5\CP3407 Advanced Software Engineering\project\CP3407> python test_scripts/test_backend_only.py
+MyClean Backend API Test Script
+========================================
+[15:30:06] INFO: Starting MyClean backend API tests
+[15:30:06] INFO: ============================================================
+[15:30:06] INFO: Testing backend health status...
+[15:30:08] SUCCESS: ✓ Backend health check passed: healthy
+[15:30:08] INFO: Attempting to clean database for fresh testing...
+[15:30:15] SUCCESS: ✓ Database cleaned and reset successfully
+[15:30:17] INFO: Testing user registration...
+[15:30:20] SUCCESS: ✓ Customer registration successful: test_eaem3ar4@example.com
+[15:30:20] INFO: Testing user login...
+[15:30:20] SUCCESS: ✓ customer login successful: test_eaem3ar4@example.com
+[15:30:20] INFO:   User ID: 4, Is Provider: False
+[15:30:20] INFO: Testing services API...
+[15:30:20] SUCCESS: ✓ Get services list successful, 6 services found
+[15:30:20] INFO:   Service: Fresh Flowers - $21.0 (Flowers)
+[15:30:20] INFO:   Service: Dried Flowers - $25.0 (Flowers)
+[15:30:20] INFO:   Service: Designer Vases - $35.0 (Flowers)
+[15:30:20] SUCCESS: ✓ Get service durations successful, 2 options found
+[15:30:20] INFO:   Duration: 1 hour (multiplier: 1.0)
+[15:30:20] INFO:   Duration: 2 hours (multiplier: 1.5)
+[15:30:20] INFO: Testing order creation...
+[15:30:20] SUCCESS: ✓ Order creation successful: XXX970
+[15:30:20] INFO:   Service: Fresh Flowers
+[15:30:20] INFO:   Date: 2025-07-31 10:00:00
+[15:30:20] INFO:   Price: $21.0
+[15:30:20] INFO: Testing orders API...
+[15:30:20] SUCCESS: ✓ Get orders list successful, 4 orders found
+[15:30:20] INFO:   Order: XXX970 - Fresh Flowers ($21.0)
+[15:30:20] INFO:   Order: XXX123 - Fresh Flowers ($21.0)
+[15:30:20] SUCCESS: ✓ Get individual order successful: XXX970
+[15:30:20] INFO: ============================================================
+[15:30:20] INFO: Test Summary:
+[15:30:20] SUCCESS: ✓ Backend health check: Passed
+[15:30:20] SUCCESS: ✓ User registration: Passed (1 users)
+[15:30:20] SUCCESS: ✓ User login: Passed
+[15:30:20] SUCCESS: ✓ Services API: Passed
+[15:30:20] SUCCESS: ✓ Order creation: Passed
+[15:30:20] SUCCESS: ✓ Orders retrieval: Passed
+[15:30:20] SUCCESS: 🎉 All backend API tests passed!
+
+✅ Test completed: Backend API functions normally!
