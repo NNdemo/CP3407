@@ -75,7 +75,17 @@ Total: 21 days
 2. [Provider Login](./user_stories/user_stories.md), priority 10, 4 days
 3. [Manage Provider Availability](./user_stories/user_stories.md), priority 10, 5 days
 
-<!-- Total: 14 days
+Total: 14 days
+
+## Software tools: 
+
+* Software Development tools: Vscode
+* Front End Tool: Webstorm Vue
+* Back End Tool: Pycharm fastapi
+* Database Engine/ software: SQLite
+* Version Control System: Github 
+
+<!-- 
 
 # Actual iterations
 1. [Iteration-1](./iteration_1.md)
