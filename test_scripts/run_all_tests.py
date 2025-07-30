@@ -158,10 +158,10 @@ class TestSuite:
         # Overall results / 总体结果
         self.log("", "INFO")
         if failed_tests == 0:
-            self.log("🎉 All tests passed! MyClean application running normally!", "SUCCESS")
+            self.log(" All tests passed! MyClean application running normally!", "SUCCESS")
             return True
         else:
-            self.log(f"❌ {failed_tests} tests failed, please check application status", "ERROR")
+            self.log(f" {failed_tests} tests failed, please check application status", "ERROR")
             return False
 
     def save_detailed_report(self):
@@ -250,10 +250,10 @@ def main():
         return 0 if success else 1
 
     except KeyboardInterrupt:
-        print("\n\n⚠️ Test interrupted by user")
+        print("\n\n Test interrupted by user")
         return 1
     except Exception as e:
-        print(f"\n❌ Test suite exception: {e}")
+        print(f"\n Test suite exception: {e}")
         import traceback
         traceback.print_exc()
         return 1
