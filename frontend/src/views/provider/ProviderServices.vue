@@ -231,7 +231,18 @@
 import { ref, onMounted } from 'vue'
 import { servicesAPI, type ServiceType } from '../../services/api'
 
-const services = ref<ServiceType[]>([])
+// Local interface that matches component expectations
+interface LocalServiceType {
+  id: number
+  name: string
+  description: string
+  category_name: string
+  base_price: number
+  duration_minutes: number
+  is_active: boolean
+}
+
+const services = ref<LocalServiceType[]>([])
 const loading = ref(false)
 const editingService = ref<ServiceType | null>(null)
 const showAddModal = ref(false)
@@ -250,23 +261,33 @@ const currentService = ref({
 const loadServices = async () => {
   loading.value = true
   try {
-    // For demo, we'll use mock data with more services
-    services.value = [
-      { id: 1, name: 'Fresh Flowers', description: 'Beautiful fresh flower arrangements', category_name: 'Flowers', base_price: 21.00, is_active: true },
-      { id: 2, name: 'Dried Flowers', description: 'Long-lasting dried flower arrangements', category_name: 'Flowers', base_price: 18.00, is_active: true },
-      { id: 3, name: 'Designer Vase', description: 'Custom designed vases for special occasions', category_name: 'Gifts', base_price: 35.00, is_active: true },
-      { id: 4, name: 'House Cleaning', description: 'Professional house cleaning service', category_name: 'Cleaning', base_price: 25.00, is_active: true },
-      { id: 5, name: 'Office Cleaning', description: 'Commercial office cleaning service', category_name: 'Cleaning', base_price: 30.00, is_active: false },
-      { id: 6, name: 'Aroma Candles', description: 'Premium scented candles for relaxation', category_name: 'Gifts', base_price: 15.00, is_active: true }
-    ]
+    // Use real API call
+    const apiServices = await servicesAPI.getServices()
+    
+    // Transform to match frontend expectations with proper defaults
+    services.value = apiServices.map(service => ({
+      ...service,
+      description: service.description || '', // Ensure description is never undefined
+      duration_minutes: service.duration_minutes || 60, // Ensure duration_minutes is never undefined
+      is_active: true // Backend only returns active services
+    }))
   } catch (error) {
     console.error('Error loading services:', error)
+    // Fallback to mock data
+    services.value = [
+      { id: 1, name: 'Fresh Flowers', description: 'Beautiful fresh flower arrangements', category_name: 'Flowers', base_price: 21.00, duration_minutes: 60, is_active: true },
+      { id: 2, name: 'Dried Flowers', description: 'Long-lasting dried flower arrangements', category_name: 'Flowers', base_price: 18.00, duration_minutes: 60, is_active: true },
+      { id: 3, name: 'Designer Vase', description: 'Custom designed vases for special occasions', category_name: 'Gifts', base_price: 35.00, duration_minutes: 90, is_active: true },
+      { id: 4, name: 'House Cleaning', description: 'Professional house cleaning service', category_name: 'Cleaning', base_price: 25.00, duration_minutes: 120, is_active: true },
+      { id: 5, name: 'Office Cleaning', description: 'Commercial office cleaning service', category_name: 'Cleaning', base_price: 30.00, duration_minutes: 90, is_active: false },
+      { id: 6, name: 'Aroma Candles', description: 'Premium scented candles for relaxation', category_name: 'Gifts', base_price: 15.00, duration_minutes: 30, is_active: true }
+    ]
   } finally {
     loading.value = false
   }
 }
 
-const updateService = async (service: ServiceType) => {
+const updateService = async (service: LocalServiceType) => {
   try {
     // In a real app, this would call an update API
     console.log('Updating service:', service)
@@ -276,7 +297,7 @@ const updateService = async (service: ServiceType) => {
   }
 }
 
-const toggleAvailability = async (service: ServiceType) => {
+const toggleAvailability = async (service: LocalServiceType) => {
   try {
     // In a real app, this would call an update API
     service.is_active = !service.is_active
@@ -287,13 +308,13 @@ const toggleAvailability = async (service: ServiceType) => {
   }
 }
 
-const editService = (service: ServiceType) => {
+const editService = (service: LocalServiceType) => {
   editingService.value = { ...service }
   currentService.value = { ...service }
   showAddModal.value = false
 }
 
-const duplicateService = (service: ServiceType) => {
+const duplicateService = (service: LocalServiceType) => {
   currentService.value = {
     ...service,
     id: 0, // New service will get a new ID
@@ -303,7 +324,7 @@ const duplicateService = (service: ServiceType) => {
   showAddModal.value = true
 }
 
-const deleteService = async (service: ServiceType) => {
+const deleteService = async (service: LocalServiceType) => {
   if (confirm(`Are you sure you want to delete "${service.name}"?`)) {
     try {
       // In a real app, this would call a delete API

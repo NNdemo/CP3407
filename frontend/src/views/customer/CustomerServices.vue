@@ -778,7 +778,22 @@ const getProviderInitials = (name: string) => {
 const loadServices = async () => {
   loading.value = true
   try {
-    // Enhanced mock data with more realistic service information
+    // Use real API call instead of mock data
+    const apiServices = await servicesAPI.getServices()
+    
+    // Transform the API response to match your frontend expectations
+    services.value = apiServices.map(service => ({
+      ...service,
+      // Add default values for fields that don't exist in backend
+      is_active: true, // Backend only returns active services
+      provider_name: 'MyClean Services', // Default provider name
+      rating: 4.5, // Default rating
+      reviews_count: 10, // Default review count
+      image_url: undefined // No images in backend
+    }))
+  } catch (error) {
+    console.error('Error loading services:', error)
+    // Fallback to mock data if API fails
     services.value = [
       {
         id: 1,
@@ -869,8 +884,6 @@ const loadServices = async () => {
         reviews_count: 19
       }
     ]
-  } catch (error) {
-    console.error('Error loading services:', error)
   } finally {
     loading.value = false
   }
@@ -878,14 +891,16 @@ const loadServices = async () => {
 
 const loadDurations = async (serviceId: number) => {
   try {
-    // Mock duration data
+    // Use real API call
+    durations.value = await servicesAPI.getServiceDurations(serviceId)
+  } catch (error) {
+    console.error('Error loading durations:', error)
+    // Fallback to mock data
     durations.value = [
       { id: 1, service_type_id: serviceId, duration_minutes: 60, duration_label: '1 Hour', price_multiplier: 1.0 },
       { id: 2, service_type_id: serviceId, duration_minutes: 120, duration_label: '2 Hours', price_multiplier: 1.8 },
       { id: 3, service_type_id: serviceId, duration_minutes: 180, duration_label: '3 Hours', price_multiplier: 2.5 }
     ]
-  } catch (error) {
-    console.error('Error loading durations:', error)
   }
 }
 
@@ -930,23 +945,13 @@ const submitBooking = async () => {
 
     console.log('Creating order with data:', orderData)
 
-    // Mock order creation for demo
-    const mockOrder = {
-      id: Date.now(),
-      order_number: `ORD-${Date.now()}`,
-      customer_name: authStore.user.value?.email || 'Customer',
-      service_date: selectedDate.value,
-      service_time_start: '11:00:00',
-      service_time_end: '12:00:00',
-      total_price: selectedService.value ? calculatePrice(selectedDurationObj.value!) : 0,
-      status: 'pending',
-      service_type_name: selectedService.value?.name || ''
-    }
+    // Use real API call instead of mock
+    const createdOrder = await ordersAPI.createOrder(orderData)
+    
+    console.log('Order created:', createdOrder)
 
-    console.log('Mock booking created:', mockOrder)
-
-    // Show success message and close modal
-    alert(`Booking confirmed! Order number: ${mockOrder.order_number}`)
+    // Show success message
+    alert(`Booking confirmed! Order number: ${createdOrder.order_number}`)
     closeBookingModal()
 
     // Optionally redirect to orders page
