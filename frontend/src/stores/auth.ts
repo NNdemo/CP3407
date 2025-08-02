@@ -33,7 +33,12 @@ const login = async (email: string, password: string) => {
 
     return userData
   } catch (err: any) {
-    authState.error = err.message || 'Login failed'
+    // Handle axios error response
+    if (err.response && err.response.data && err.response.data.detail) {
+      authState.error = err.response.data.detail
+    } else {
+      authState.error = err.message || 'Login failed'
+    }
     throw err
   } finally {
     authState.isLoading = false
@@ -59,7 +64,12 @@ const register = async (userData: {
 
     return newUser
   } catch (err: any) {
-    authState.error = err.message || 'Registration failed'
+    // Handle axios error response
+    if (err.response && err.response.data && err.response.data.detail) {
+      authState.error = err.response.data.detail
+    } else {
+      authState.error = err.message || 'Registration failed'
+    }
     throw err
   } finally {
     authState.isLoading = false
@@ -73,6 +83,10 @@ const logout = () => {
 }
 
 const initializeAuth = () => {
+  // Ensure isLoading is false on initialization
+  authState.isLoading = false
+  authState.error = null
+
   // Check if user data exists in localStorage
   const storedUser = localStorage.getItem('user')
   if (storedUser) {
@@ -92,9 +106,9 @@ const clearError = () => {
 // Export the auth store as a composable
 export const useAuthStore = () => {
   return {
-    // State
+    // State - return reactive properties directly
     user: computed(() => authState.user),
-    isLoading: computed(() => authState.isLoading),
+    isLoading: authState.isLoading,  // Direct access to reactive property
     error: computed(() => authState.error),
 
     // Getters

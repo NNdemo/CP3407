@@ -57,6 +57,7 @@ class ServiceType(BaseModel):
     base_price: float
     duration_minutes: int
     category_name: str
+    is_active: bool = True
 
 class ServiceDuration(BaseModel):
     id: int
@@ -70,6 +71,21 @@ class OrderCreate(BaseModel):
     service_date: date
     service_time_start: time
     customer_notes: Optional[str] = None
+
+class ServiceUpdate(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    base_price: Optional[float] = None
+    duration_minutes: Optional[int] = None
+    is_active: Optional[bool] = None
+
+class ServiceCreate(BaseModel):
+    name: str
+    description: Optional[str] = None
+    category_name: str
+    base_price: float
+    duration_minutes: int = 60
+    is_active: bool = True
 
 class OrderResponse(BaseModel):
     id: int
@@ -152,16 +168,29 @@ async def login(user: UserLogin):
 
 # Service endpoints
 @app.get("/api/services", response_model=List[ServiceType])
-async def get_services():
+async def get_services(include_inactive: bool = False):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("""
-        SELECT st.id, st.name, st.description, st.base_price, st.duration_minutes, sc.name as category_name
-        FROM service_types st
-        JOIN service_categories sc ON st.category_id = sc.id
-        WHERE st.is_active = 1
-    """)
+    # For provider management, include inactive services
+    # For customer browsing, only show active services
+    if include_inactive:
+        cursor.execute("""
+            SELECT st.id, st.name, st.description, st.base_price, st.duration_minutes,
+                   sc.name as category_name, st.is_active
+            FROM service_types st
+            JOIN service_categories sc ON st.category_id = sc.id
+            ORDER BY st.is_active DESC, st.name ASC
+        """)
+    else:
+        cursor.execute("""
+            SELECT st.id, st.name, st.description, st.base_price, st.duration_minutes,
+                   sc.name as category_name, st.is_active
+            FROM service_types st
+            JOIN service_categories sc ON st.category_id = sc.id
+            WHERE st.is_active = 1
+            ORDER BY st.name ASC
+        """)
 
     services = []
     for row in cursor.fetchall():
@@ -171,7 +200,8 @@ async def get_services():
             description=row["description"],
             base_price=row["base_price"],
             duration_minutes=row["duration_minutes"],
-            category_name=row["category_name"]
+            category_name=row["category_name"],
+            is_active=bool(row["is_active"])
         ))
 
     conn.close()
@@ -199,6 +229,98 @@ async def get_service_durations(service_id: int):
 
     conn.close()
     return durations
+
+@app.put("/api/services/{service_id}")
+async def update_service(service_id: int, service_update: ServiceUpdate):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Check if service exists
+    cursor.execute("SELECT id FROM service_types WHERE id = ?", (service_id,))
+    if not cursor.fetchone():
+        raise HTTPException(status_code=404, detail="Service not found")
+
+    # Build update query dynamically based on provided fields
+    update_fields = []
+    update_values = []
+
+    if service_update.name is not None:
+        update_fields.append("name = ?")
+        update_values.append(service_update.name)
+
+    if service_update.description is not None:
+        update_fields.append("description = ?")
+        update_values.append(service_update.description)
+
+    if service_update.base_price is not None:
+        update_fields.append("base_price = ?")
+        update_values.append(service_update.base_price)
+
+    if service_update.duration_minutes is not None:
+        update_fields.append("duration_minutes = ?")
+        update_values.append(service_update.duration_minutes)
+
+    if service_update.is_active is not None:
+        update_fields.append("is_active = ?")
+        update_values.append(service_update.is_active)
+
+    if not update_fields:
+        raise HTTPException(status_code=400, detail="No fields to update")
+
+    # Add service_id for WHERE clause
+    update_values.append(service_id)
+
+    query = f"UPDATE service_types SET {', '.join(update_fields)} WHERE id = ?"
+    cursor.execute(query, update_values)
+
+    conn.commit()
+    conn.close()
+
+    return {"message": "Service updated successfully", "service_id": service_id}
+
+@app.post("/api/services", response_model=ServiceType)
+async def create_service(service: ServiceCreate):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Get category_id from category_name
+    cursor.execute("SELECT id FROM service_categories WHERE name = ?", (service.category_name,))
+    category = cursor.fetchone()
+    if not category:
+        raise HTTPException(status_code=400, detail=f"Category '{service.category_name}' not found")
+
+    category_id = category["id"]
+
+    # Create new service
+    cursor.execute("""
+        INSERT INTO service_types (category_id, name, description, base_price, duration_minutes, is_active)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (category_id, service.name, service.description, service.base_price, service.duration_minutes, service.is_active))
+
+    service_id = cursor.lastrowid
+    conn.commit()
+
+    # Return the created service
+    cursor.execute("""
+        SELECT st.id, st.name, st.description, st.base_price, st.duration_minutes,
+               sc.name as category_name, st.is_active
+        FROM service_types st
+        JOIN service_categories sc ON st.category_id = sc.id
+        WHERE st.id = ?
+    """, (service_id,))
+
+    service_data = cursor.fetchone()
+    conn.close()
+
+    return ServiceType(
+        id=service_data["id"],
+        name=service_data["name"],
+        description=service_data["description"],
+        base_price=service_data["base_price"],
+        duration_minutes=service_data["duration_minutes"],
+        category_name=service_data["category_name"],
+        is_active=bool(service_data["is_active"])
+    )
 
 # Order endpoints
 @app.post("/api/orders", response_model=OrderResponse)
@@ -342,6 +464,48 @@ async def get_order(order_id: int):
         status=row["status"],
         service_type_name=row["service_type_name"]
     )
+
+# Order status update endpoint
+@app.put("/api/orders/{order_id}/status")
+async def update_order_status(order_id: int, status: str):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Validate status
+    valid_statuses = ['pending', 'confirmed', 'in_progress', 'completed', 'cancelled']
+    if status not in valid_statuses:
+        raise HTTPException(status_code=400, detail=f"Invalid status. Must be one of: {valid_statuses}")
+
+    # Check if order exists
+    cursor.execute("SELECT id, status FROM orders WHERE id = ?", (order_id,))
+    order = cursor.fetchone()
+    if not order:
+        raise HTTPException(status_code=404, detail="Order not found")
+
+    # Update order status
+    update_time = datetime.now().isoformat()
+    cursor.execute("""
+        UPDATE orders
+        SET status = ?, updated_at = ?, confirmed_at = ?, completed_at = ?
+        WHERE id = ?
+    """, (
+        status,
+        update_time,
+        update_time if status == 'confirmed' else None,
+        update_time if status == 'completed' else None,
+        order_id
+    ))
+
+    # Add to status history
+    cursor.execute("""
+        INSERT INTO order_status_history (order_id, old_status, new_status, changed_by, created_at)
+        VALUES (?, ?, ?, ?, ?)
+    """, (order_id, order['status'], status, 1, update_time))  # Using user_id = 1 for demo
+
+    conn.commit()
+    conn.close()
+
+    return {"message": "Order status updated successfully", "order_id": order_id, "new_status": status}
 
 # Health check endpoint
 @app.get("/api/health")

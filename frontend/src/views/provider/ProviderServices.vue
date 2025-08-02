@@ -13,13 +13,41 @@
         </div>
       </div>
 
+      <!-- Search and Filter Controls -->
+      <div class="search-filter-controls">
+        <div class="search-box">
+          <input
+            type="text"
+            v-model="searchQuery"
+            placeholder="Search services by name..."
+            class="search-input"
+          >
+          <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="filter-controls">
+          <select v-model="statusFilter" class="filter-select">
+            <option value="all">All Services</option>
+            <option value="active">Active Only</option>
+            <option value="inactive">Inactive Only</option>
+          </select>
+
+          <select v-model="categoryFilter" class="filter-select">
+            <option value="all">All Categories</option>
+            <option value="Flowers">Flowers</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="Gifts">Gifts</option>
+          </select>
+        </div>
+      </div>
+
       <div class="services-grid">
         <div v-if="loading" class="loading">Loading services...</div>
-        <div v-else-if="services.length === 0" class="no-services">
-          No services found.
+        <div v-else-if="filteredServices.length === 0" class="no-services">
+          {{ services.length === 0 ? 'No services found.' : 'No services match your search criteria.' }}
         </div>
         <template v-else>
-          <div v-for="service in services" :key="service.id" class="service-card">
+          <div v-for="service in filteredServices" :key="service.id" class="service-card">
             <!-- Service Header -->
             <div class="service-card-header">
               <div class="service-title-section">
@@ -228,7 +256,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { servicesAPI, type ServiceType } from '../../services/api'
 
 // Local interface that matches component expectations
@@ -247,6 +275,41 @@ const loading = ref(false)
 const editingService = ref<ServiceType | null>(null)
 const showAddModal = ref(false)
 
+// Search and filter state
+const searchQuery = ref('')
+const statusFilter = ref('all')
+const categoryFilter = ref('all')
+
+// Filtered services computed property
+const filteredServices = computed(() => {
+  let filtered = services.value
+
+  // Filter by search query
+  if (searchQuery.value.trim()) {
+    const query = searchQuery.value.toLowerCase().trim()
+    filtered = filtered.filter(service =>
+      service.name.toLowerCase().includes(query) ||
+      service.description.toLowerCase().includes(query)
+    )
+  }
+
+  // Filter by status
+  if (statusFilter.value !== 'all') {
+    filtered = filtered.filter(service => {
+      if (statusFilter.value === 'active') return service.is_active
+      if (statusFilter.value === 'inactive') return !service.is_active
+      return true
+    })
+  }
+
+  // Filter by category
+  if (categoryFilter.value !== 'all') {
+    filtered = filtered.filter(service => service.category_name === categoryFilter.value)
+  }
+
+  return filtered
+})
+
 // Current service being edited or created
 const currentService = ref({
   id: 0,
@@ -261,15 +324,15 @@ const currentService = ref({
 const loadServices = async () => {
   loading.value = true
   try {
-    // Use real API call
-    const apiServices = await servicesAPI.getServices()
-    
+    // Use real API call with includeInactive=true for provider management
+    const apiServices = await servicesAPI.getServices(true)
+
     // Transform to match frontend expectations with proper defaults
     services.value = apiServices.map(service => ({
       ...service,
       description: service.description || '', // Ensure description is never undefined
       duration_minutes: service.duration_minutes || 60, // Ensure duration_minutes is never undefined
-      is_active: true // Backend only returns active services
+      is_active: service.is_active !== false // Use actual is_active from backend
     }))
   } catch (error) {
     console.error('Error loading services:', error)
@@ -289,22 +352,37 @@ const loadServices = async () => {
 
 const updateService = async (service: LocalServiceType) => {
   try {
-    // In a real app, this would call an update API
     console.log('Updating service:', service)
-    // await servicesAPI.updateService(service.id, service)
+
+    // Call the backend API to update service
+    await servicesAPI.updateService(service.id, {
+      base_price: service.base_price,
+      duration_minutes: service.duration_minutes
+    })
+
+    console.log('Service updated successfully')
   } catch (error) {
     console.error('Error updating service:', error)
+    alert('Failed to update service. Please try again.')
   }
 }
 
 const toggleAvailability = async (service: LocalServiceType) => {
   try {
-    // In a real app, this would call an update API
-    service.is_active = !service.is_active
+    const newStatus = !service.is_active
     console.log('Toggling availability for service:', service)
-    // await servicesAPI.updateService(service.id, { is_active: service.is_active })
+
+    // Call the backend API to update service status
+    await servicesAPI.updateService(service.id, { is_active: newStatus })
+
+    // Update local state only after successful API call
+    service.is_active = newStatus
+
+    // Show success message
+    alert(`Service "${service.name}" is now ${newStatus ? 'active' : 'inactive'}`)
   } catch (error) {
     console.error('Error toggling availability:', error)
+    alert('Failed to update service availability. Please try again.')
   }
 }
 
@@ -368,7 +446,7 @@ const saveService = async () => {
     if (editingService.value) {
       // Update existing service
       console.log('Updating service:', currentService.value)
-      // await servicesAPI.updateService(currentService.value.id, currentService.value)
+      await servicesAPI.updateService(currentService.value.id, currentService.value)
 
       const index = services.value.findIndex(s => s.id === currentService.value.id)
       if (index !== -1) {
@@ -377,14 +455,23 @@ const saveService = async () => {
       alert('Service updated successfully!')
     } else {
       // Create new service
-      const newService = {
-        ...currentService.value,
-        id: Date.now() // Simple ID generation for demo
-      }
-      console.log('Creating service:', newService)
-      // await servicesAPI.createService(newService)
+      console.log('Creating service:', currentService.value)
+      const createdService = await servicesAPI.createService({
+        name: currentService.value.name,
+        description: currentService.value.description,
+        category_name: currentService.value.category_name,
+        base_price: currentService.value.base_price,
+        duration_minutes: currentService.value.duration_minutes,
+        is_active: currentService.value.is_active
+      })
 
-      services.value.push(newService)
+      // Add the created service to the local list
+      services.value.push({
+        ...createdService,
+        description: createdService.description || '',
+        duration_minutes: createdService.duration_minutes || 60,
+        is_active: currentService.value.is_active
+      })
       alert('Service created successfully!')
     }
 
@@ -994,6 +1081,85 @@ onMounted(() => {
 .form-input:focus {
   outline: none;
   border-color: #007bff;
+}
+
+/* Search and Filter Controls */
+.search-filter-controls {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  min-width: 300px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  font-size: 16px;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.filter-select {
+  padding: 10px 12px;
+  border: 2px solid #e1e5e9;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  min-width: 140px;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .search-filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    min-width: auto;
+  }
+
+  .filter-controls {
+    justify-content: space-between;
+  }
 }
 
 .modal-actions {
