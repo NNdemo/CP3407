@@ -33,6 +33,9 @@ Completed:
 * Task-4 (Book a Cleaning Service), date completed 09/07/2025
 * Task-5 (View Assigned Bookings), date completed 09/07/2025
 
+project task results
+* accepting/declining orders does not save to database 
+* completing orders does not save to database
 
 ### Burn Down for iteration-1 (see chapter 4):
 Update this at least once per week
