@@ -81,13 +81,31 @@ export const authAPI = {
 
 // Services API
 export const servicesAPI = {
-  getServices: async (): Promise<ServiceType[]> => {
-    const response = await api.get('/services')
+  getServices: async (includeInactive: boolean = false): Promise<ServiceType[]> => {
+    const params = includeInactive ? { include_inactive: true } : {}
+    const response = await api.get('/services', { params })
     return response.data
   },
 
   getServiceDurations: async (serviceId: number): Promise<ServiceDuration[]> => {
     const response = await api.get(`/services/${serviceId}/durations`)
+    return response.data
+  },
+
+  updateService: async (serviceId: number, serviceData: Partial<ServiceType>): Promise<{message: string, service_id: number}> => {
+    const response = await api.put(`/services/${serviceId}`, serviceData)
+    return response.data
+  },
+
+  createService: async (serviceData: {
+    name: string
+    description?: string
+    category_name: string
+    base_price: number
+    duration_minutes?: number
+    is_active?: boolean
+  }): Promise<ServiceType> => {
+    const response = await api.post('/services', serviceData)
     return response.data
   }
 }
@@ -107,6 +125,11 @@ export const ordersAPI = {
 
   getOrder: async (orderId: number): Promise<Order> => {
     const response = await api.get(`/orders/${orderId}`)
+    return response.data
+  },
+
+  updateOrderStatus: async (orderId: number, status: string): Promise<{message: string, order_id: number, new_status: string}> => {
+    const response = await api.put(`/orders/${orderId}/status?status=${status}`)
     return response.data
   }
 }

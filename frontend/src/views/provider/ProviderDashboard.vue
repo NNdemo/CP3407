@@ -104,20 +104,21 @@ import { ordersAPI, servicesAPI, type Order, type ServiceType } from '../../serv
 
 const authStore = useAuthStore()
 const recentOrders = ref<Order[]>([])
+const allOrders = ref<Order[]>([])
 const services = ref<ServiceType[]>([])
 const loading = ref(false)
 
 const stats = computed(() => {
-  const totalOrders = recentOrders.value.length
-  const pendingOrders = recentOrders.value.filter(o => o.status === 'pending').length
-  const completedOrders = recentOrders.value.filter(o => o.status === 'completed').length
-  const totalRevenue = recentOrders.value
+  const totalOrders = allOrders.value.length
+  const pendingOrders = allOrders.value.filter(o => o.status === 'pending').length
+  const completedOrders = allOrders.value.filter(o => o.status === 'completed').length
+  const totalRevenue = allOrders.value
     .filter(o => o.status === 'completed')
     .reduce((sum, order) => sum + order.total_price, 0)
-  
+
   // New metrics
-  const activeServices = services.value.filter(s => s.is_active).length
-  const averageRating = services.value.length > 0 
+  const activeServices = services.value.filter(s => s.is_active !== false).length
+  const averageRating = services.value.length > 0
     ? (services.value.reduce((sum, s) => sum + (s.rating || 0), 0) / services.value.length).toFixed(1)
     : '0.0'
 
@@ -151,6 +152,7 @@ const loadRecentOrders = async () => {
   try {
     // In a real app, this would be filtered by provider
     const orders = await ordersAPI.getOrders()
+    allOrders.value = orders // Store all orders for stats calculation
     recentOrders.value = orders.slice(0, 5) // Show only 5 recent orders
   } catch (error) {
     console.error('Error loading recent orders:', error)

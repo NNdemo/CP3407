@@ -18,13 +18,26 @@
         </button>
       </div>
 
+      <!-- Search Controls -->
+      <div class="search-controls">
+        <div class="search-box">
+          <input
+            type="text"
+            v-model="searchQuery"
+            placeholder="Search by order number, customer name, or service type..."
+            class="search-input"
+          >
+          <span class="search-icon">🔍</span>
+        </div>
+      </div>
+
       <div class="orders-list">
         <div v-if="loading" class="loading">Loading orders...</div>
-        <div v-else-if="orders.length === 0" class="no-orders">
-          No orders found for the selected filter.
+        <div v-else-if="filteredOrders.length === 0" class="no-orders">
+          {{ orders.length === 0 ? 'No orders found for the selected filter.' : 'No orders match your search criteria.' }}
         </div>
         <div v-else>
-          <div v-for="order in orders" :key="order.id" class="order-card">
+          <div v-for="order in filteredOrders" :key="order.id" class="order-card">
             <div class="order-header">
               <div class="order-number">
                 <h3>{{ order.order_number }}</h3>
@@ -84,6 +97,95 @@
         </div>
       </div>
     </div>
+
+    <!-- Order Details Modal -->
+    <div v-if="showDetailsModal" class="modal-overlay" @click="closeDetailsModal">
+      <div class="modal-content order-details-modal" @click.stop>
+        <div class="modal-header">
+          <h2>Order Details</h2>
+          <button @click="closeDetailsModal" class="close-btn">&times;</button>
+        </div>
+
+        <div class="modal-body" v-if="selectedOrder">
+          <div class="order-details-grid">
+            <!-- Order Information -->
+            <div class="details-section">
+              <h3>Order Information</h3>
+              <div class="detail-item">
+                <label>Order Number:</label>
+                <span>{{ selectedOrder.order_number }}</span>
+              </div>
+              <div class="detail-item">
+                <label>Status:</label>
+                <span class="status-badge" :class="selectedOrder.status">
+                  {{ formatStatus(selectedOrder.status) }}
+                </span>
+              </div>
+              <div class="detail-item">
+                <label>Service Date:</label>
+                <span>{{ formatDate(selectedOrder.service_date) }}</span>
+              </div>
+              <div class="detail-item">
+                <label>Service Time:</label>
+                <span>{{ selectedOrder.service_time_start }}</span>
+              </div>
+              <div class="detail-item">
+                <label>Total Amount:</label>
+                <span class="amount">${{ selectedOrder.total_price.toFixed(2) }}</span>
+              </div>
+            </div>
+
+            <!-- Customer Information -->
+            <div class="details-section">
+              <h3>Customer Information</h3>
+              <div class="detail-item">
+                <label>Name:</label>
+                <span>{{ selectedOrder.customer_name }}</span>
+              </div>
+              <div class="detail-item">
+                <label>Email:</label>
+                <span>{{ selectedOrder.customer_email || 'Not provided' }}</span>
+              </div>
+              <div class="detail-item">
+                <label>Phone:</label>
+                <span>{{ selectedOrder.customer_phone || 'Not provided' }}</span>
+              </div>
+            </div>
+
+            <!-- Service Information -->
+            <div class="details-section">
+              <h3>Service Information</h3>
+              <div class="detail-item">
+                <label>Service:</label>
+                <span>{{ selectedOrder.service_name }}</span>
+              </div>
+              <div class="detail-item">
+                <label>Duration:</label>
+                <span>{{ selectedOrder.duration_minutes }} minutes</span>
+              </div>
+              <div class="detail-item">
+                <label>Base Price:</label>
+                <span>${{ selectedOrder.base_price?.toFixed(2) || 'N/A' }}</span>
+              </div>
+            </div>
+
+            <!-- Additional Notes -->
+            <div class="details-section full-width" v-if="selectedOrder.customer_notes">
+              <h3>Customer Notes</h3>
+              <div class="notes-content">
+                {{ selectedOrder.customer_notes }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button @click="closeDetailsModal" class="btn btn-secondary">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -94,6 +196,9 @@ import { ordersAPI, type Order } from '../../services/api'
 const orders = ref<Order[]>([])
 const loading = ref(false)
 const activeFilter = ref('all')
+const searchQuery = ref('')
+const showDetailsModal = ref(false)
+const selectedOrder = ref<Order | null>(null)
 
 const filters = computed(() => [
   {
@@ -122,6 +227,23 @@ const filters = computed(() => [
     count: orders.value.filter(o => o.status === 'completed').length
   }
 ])
+
+// Filtered orders computed property
+const filteredOrders = computed(() => {
+  let filtered = orders.value
+
+  // Filter by search query
+  if (searchQuery.value.trim()) {
+    const query = searchQuery.value.toLowerCase().trim()
+    filtered = filtered.filter(order =>
+      (order.order_number || '').toLowerCase().includes(query) ||
+      (order.customer_name || '').toLowerCase().includes(query) ||
+      (order.service_name || '').toLowerCase().includes(query)
+    )
+  }
+
+  return filtered
+})
 
 const formatStatus = (status: string) => {
   const statusMap: Record<string, string> = {
@@ -165,20 +287,30 @@ const loadOrders = async () => {
 
 const updateOrderStatus = async (order: Order, newStatus: string) => {
   try {
-    // In a real app, this would call an update API
     console.log(`Updating order ${order.order_number} status to ${newStatus}`)
-    // await ordersAPI.updateOrderStatus(order.id, newStatus)
+
+    // Call the backend API to update order status
+    await ordersAPI.updateOrderStatus(order.id, newStatus)
 
     // Update local state
     order.status = newStatus
+
+    // Show success message
+    alert(`Order ${order.order_number} status updated to ${newStatus}`)
   } catch (error) {
     console.error('Error updating order status:', error)
+    alert('Failed to update order status. Please try again.')
   }
 }
 
 const viewOrderDetails = (order: Order) => {
-  // In a real app, this would navigate to order details page
-  console.log('Viewing order details:', order)
+  selectedOrder.value = order
+  showDetailsModal.value = true
+}
+
+const closeDetailsModal = () => {
+  showDetailsModal.value = false
+  selectedOrder.value = null
 }
 
 onMounted(() => {
@@ -492,6 +624,221 @@ onMounted(() => {
 
   .order-amount {
     font-size: 1.3rem;
+  }
+}
+
+/* Search Controls */
+.search-controls {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-box {
+  position: relative;
+  max-width: 500px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  font-size: 16px;
+}
+
+/* Order Details Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.order-details-modal {
+  background: white;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e1e5e9;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: #f8f9fa;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.order-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.details-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.details-section.full-width {
+  grid-column: 1 / -1;
+}
+
+.details-section h3 {
+  margin: 0 0 16px 0;
+  color: #333;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e1e5e9;
+}
+
+.detail-item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.detail-item label {
+  font-weight: 600;
+  color: #555;
+  margin-right: 12px;
+}
+
+.detail-item span {
+  color: #333;
+  text-align: right;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-badge.confirmed {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.status-badge.in_progress {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-badge.completed {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.amount {
+  font-weight: 700;
+  color: #28a745;
+  font-size: 1.1rem;
+}
+
+.notes-content {
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  padding: 16px;
+  color: #333;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.modal-footer {
+  padding: 20px 24px;
+  border-top: 1px solid #e1e5e9;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .order-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .order-details-modal {
+    max-height: 95vh;
   }
 }
 </style>

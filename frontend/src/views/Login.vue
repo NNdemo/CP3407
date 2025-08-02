@@ -8,8 +8,8 @@
         </div>
 
         <form @submit.prevent="handleLogin">
-          <div v-if="authStore.error.value" class="error-message">
-            {{ authStore.error.value }}
+          <div v-if="authStore.error" class="error-message">
+            {{ authStore.error }}
           </div>
 
           <!-- Role Selection -->
@@ -42,7 +42,7 @@
               placeholder="Email or phone number"
               class="form-input"
               required
-              :disabled="authStore.isLoading.value"
+              :disabled="authStore.isLoading"
             >
           </div>
 
@@ -53,12 +53,12 @@
               placeholder="Password"
               class="form-input"
               required
-              :disabled="authStore.isLoading.value"
+              :disabled="authStore.isLoading"
             >
           </div>
 
-          <button type="submit" class="login-btn" :disabled="authStore.isLoading.value">
-            {{ authStore.isLoading.value ? 'Logging in...' : `Login as ${userRole === 'customer' ? 'Customer' : 'Provider'}` }}
+          <button type="submit" class="login-btn" :disabled="authStore.isLoading">
+            {{ authStore.isLoading ? 'Logging in...' : `Login as ${userRole === 'customer' ? 'Customer' : 'Provider'}` }}
           </button>
         </form>
 

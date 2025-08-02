@@ -39,3 +39,7 @@ yarn-error.log*
 .vscode/
 *.swp
 *.swo 
+backend/test_api_response.py
+backend/test_endpoints.py
+backend/test_service_update.py
+backend/__pycache__/main.cpython-312.pyc
