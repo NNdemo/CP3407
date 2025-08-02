@@ -51,7 +51,7 @@ Project Goals:
 Total: 7 days
 
 
-## Iteration 1 [Jun 4, 2025 - Jun 24, 2025]
+## Iteration 1 [Week3 - Week6]
 
 * Focus on core functionality and user authentication
 * Weekly progress updates during practical sessions
@@ -65,7 +65,7 @@ Total: 7 days
 
 Total: 21 days
 
-## Iteration 2 [duration 7-10 weeks]
+## Iteration 2 [Week 7- Week 10]
 
 * Delivered provider registration, login, and availability management to create a secure backbone for later booking features.
 * Weekly progress updates during practical sessions
