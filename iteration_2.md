@@ -31,7 +31,10 @@ Completed:
 * Task-2 (Manage Provider Availability), date completed 23/07/2025
 * Task-3 (Provider Login), date completed 30/07/2025
 
-
+project task result:
+* login in error
+* cannot make a service as inactive
+* creating a new service does not save to the database
 
 ### Burn Down for iteration-2 (see chapter 4):
 Update this at least once per week
