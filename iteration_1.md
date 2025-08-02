@@ -43,7 +43,7 @@ Update this at least once per week
 <!-- * 2 weeks left, xx days
 * 1 weeks left, xx days
 * 0 weeks left, xx days -->
-* Actual Velocity: 1 
+* Actual Velocity: 100%
 
 # Screemshots of completed work
 
