@@ -4,7 +4,7 @@
 * Front End Tool: Webstorm Vue
 * Back End Tool: Pycharm fastapi
 * Database Engine/ software: SQLite
-* Version Control System: Github 
+* Version Control System: Git
 * what and how you use these tools:
   - VSCode: Primary code editor for general development
     ```bash
