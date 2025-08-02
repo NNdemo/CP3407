@@ -6,14 +6,14 @@ Checklist:
 
 * Assumed Velocity: 90 % 
 * Number of developers: 4
-* Total estimated amount of work: 16 days
+* Total estimated amount of work: 21 days
 
 User stories or tasks (see chapter 4):
-1. [Customer Account Registration](./user_stories/user_stories.md), priority 10, 1.4 days
-2. [Customer Account Login](./user_stories/user_stories.md), priority 10, 2 days
-3. [Browse Cleaning Services](./user_stories/user_stories.md), priority 10, 5 days
-4. [Book a Cleaning Service](./user_stories/user_stories.md), priority 10, 5 days 
-5. [View Assigned Bookings](./user_stories/user_stories.md), priority 30, 2.5 days
+1. [Customer Account Registration](./user_stories/user_stories.md), priority 10, 2.5 days
+2. [Customer Account Login](./user_stories/user_stories.md), priority 10, 2.5 days
+3. [Browse Cleaning Services](./user_stories/user_stories.md), priority 10, 7 days
+4. [Book a Cleaning Service](./user_stories/user_stories.md), priority 10, 7 days 
+5. [View Assigned Bookings](./user_stories/user_stories.md), priority 30, 2 days
 <!-- 5. [Manage Provider Availability](./user_stories/user_stories.md), priority 10, 1.5 days -->
 <!-- 6. [Provider Login](./user_stories/user_stories.md), priority 10, 1.5 days -->
 <!-- 7. [Provider Account Registration](./user_stories/user_stories.md), priority 10, 1.5 days -->
