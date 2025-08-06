@@ -11,6 +11,8 @@ Practical B Group 3:
 3. Rui Yan
 4. Jin Wang
 
+## Project URL: http://45.77.44.161/
+
 # Project planning BEFORE iteration-1, (see chapters 1-3)
 Checklist/TODOs: 
 * ✅ Update the following during each week prac session
