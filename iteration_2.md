@@ -44,6 +44,8 @@ Update this at least once per week
 <!-- * 0 weeks left, xx days -->
 * Actual Velocity: 100% 
 
+![Burn-down_Chart](iteration2_images/BurnDownChart_Iteration2.png)
+
 # Screemshots of completed work
 
 ### Index
