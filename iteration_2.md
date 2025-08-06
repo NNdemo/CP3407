@@ -42,7 +42,7 @@ Update this at least once per week
 * 2 weeks left, 10 days of estimated amount of work
 * 1 weeks left, 5 days of estimated amount of work
 <!-- * 0 weeks left, xx days -->
-* Actual Velocity: 100% 
+* Actual Velocity: 95% 
 
 ![Burn-down_Chart](images/iteration2_images/BurnDownChart_Iteration2.png)
 
