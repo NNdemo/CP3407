@@ -11,3 +11,35 @@ Project Goals:
 * Providing a secure login for customers and cleaning providers
 * Implement a cloud based storage system like AWS
 * Allow Providers to track earnings and managing appointments
+
+lteration1 Retrospective: 
+
+* Iteration Period
+	Start: 2025-06-04  
+	End:   2025-07-09 
+
+* iteration 1 Goals:
+	Primary Goal: Complete user stories US1-US5
+
+* Key  Deliverables:
+	'iteration1.md'
+	Burndown Chart
+	Wireframe and ERD
+
+* What did not go well 
+	1. accepting/declining orders does not save to the database US4:Book a Cleaning Service
+	2. completing orders doesn't save to the database US5:View Assigned Bookings
+
+* Action Items:
+	we modified the front-end code and the back-end interface. Now, the functions with bugs can operate normally. 
+
+* Metrics:
+	Planned Velocity: 90%
+	Actual Velocity: 100%
+	Defect Count: 2 small bugs 
+	Deployment Frequency: 3 deployments to test environment.
+
+* Next Steps:  
+	Incorporate all action items into Iteration 2 planning.  
+	Finalize and share the full test report; update `testing.md`.  
+	Refresh project README with Iteration 1 screenshots and links.  
