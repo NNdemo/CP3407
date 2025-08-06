@@ -30,6 +30,8 @@ Iteration 1 user stories all have been implemented successfully and they are ope
 
 ## Issues Encountered and Resolved
 
+![Issue 1](issue_1.png)
+
 - **Homepage UI Design**: Updated the homepage interface design during development
 - **Login System**: Initially used mock interface, now fully integrated with database backend
 - **Booking System**: Frontend has issues with submitting booking data to backend
