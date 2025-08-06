@@ -44,26 +44,26 @@ Update this at least once per week
 <!-- * 0 weeks left, xx days -->
 * Actual Velocity: 100% 
 
-![Burn-down_Chart](iteration2_images/BurnDownChart_Iteration2.png)
+![Burn-down_Chart](images/iteration2_images/BurnDownChart_Iteration2.png)
 
 # Screemshots of completed work
 
 ### Index
-![Provider Account Registration](iteation1_images/Home.jpeg)
+![Provider Account Registration](images/iteation1_images/Home.jpeg)
 
 ### Provider Login
-![Login](iteation1_images/Login.jpeg)
+![Login](images/iteation1_images/Login.jpeg)
 
 ### Register
-![Register](iteation1_images/Register.jpeg)
+![Register](images/iteation1_images/Register.jpeg)
 
 ### Provider Dashboard
-![Provider Dashboard](iteation1_images/ProviderDashboard.jpeg)
+![Provider Dashboard](images/iteation1_images/ProviderDashboard.jpeg)
 
 ### Service Type - Provider View
-![Service Type - Provider View](iteation1_images/ServicesType_Provider.jpeg)
+![Service Type - Provider View](images/iteation1_images/ServicesType_Provider.jpeg)
 
 ### My Orders - provider view
-![My Orders - provider view](iteation1_images/MyOrdersProviders.jpeg)
+![My Orders - provider view](images/iteation1_images/MyOrdersProviders.jpeg)
 
 

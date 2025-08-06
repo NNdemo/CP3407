@@ -45,38 +45,38 @@ Update this at least once per week
 * 0 weeks left, xx days -->
 * Actual Velocity: 100%
 * 
-![Burn-down_Chart](iteation1_images/Burn-down_Chart.png)
+![Burn-down_Chart](images/iteation1_images/Burn-down_Chart.png)
 
 # Screemshots of completed work
 
 ### Index
-![Index - Homepage 1](iteation1_images/Homepage_1.png)
+![Index - Homepage 1](images/iteation1_images/Homepage_1.png)
 
-![Index - Homepage 2](iteation1_images/Homepage_2.png)
+![Index - Homepage 2](images/iteation1_images/Homepage_2.png)
 
-![Index - Homepage 3](iteation1_images/Homepage_3.png)
+![Index - Homepage 3](images/iteation1_images/Homepage_3.png)
 
 ### Login
-![Login](iteation1_images/Login.jpeg)
+![Login](images/iteation1_images/Login.jpeg)
 
 ### Register
-![Register](iteation1_images/Register.jpeg)
+![Register](images/iteation1_images/Register.jpeg)
 
 <!-- ### Service Type - Provider View
-![Service Type - Provider View](iteation1_images/ServicesType_Provider.jpeg) -->
+![Service Type - Provider View](images/iteation1_images/ServicesType_Provider.jpeg) -->
 
 ### Browse Cleaning Services
-![Browse Cleaning Services](iteation1_images/BrowseServices.jpeg)
+![Browse Cleaning Services](images/iteation1_images/BrowseServices.jpeg)
 
 ### Book a Cleaning Service
-![Book a Cleaning Service](iteation1_images/BookCleaningService.jpeg)
+![Book a Cleaning Service](images/iteation1_images/BookCleaningService.jpeg)
 
 ### View Assigned Bookings
-![View Assigned Bookings](iteation1_images/MyOrdersCustomer.jpeg)
+![View Assigned Bookings](images/iteation1_images/MyOrdersCustomer.jpeg)
 
 <!-- ### My Orders - provider view
-![My Orders - provider view](iteation1_images/MyOrdersProviders.jpeg)
+![My Orders - provider view](images/iteation1_images/MyOrdersProviders.jpeg)
 
 ### Provider Dashboard
-![Provider Dashboard](iteation1_images/ProviderDashboard.jpeg) -->
+![Provider Dashboard](images/iteation1_images/ProviderDashboard.jpeg) -->
 
