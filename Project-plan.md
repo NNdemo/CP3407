@@ -15,6 +15,7 @@ Project Goals:
 lteration1 Retrospective: 
 
 * Iteration Period
+  
 	Start: 2025-06-04  
 	End:   2025-07-09 
 
