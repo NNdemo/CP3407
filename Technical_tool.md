@@ -5,6 +5,7 @@
 * Back End Tool: Pycharm fastapi
 * Database Engine/ software: SQLite
 * Version Control System: Git
+* Cloud: Vultr
 * what and how you use these tools:
   - VSCode: Primary code editor for general development
     ```bash
