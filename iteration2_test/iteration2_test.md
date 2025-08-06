@@ -35,6 +35,8 @@ Iteration 2 user stories all have been implemented successfully and they are ope
 ## Issues Encountered and Resolved
 
 - All functions are operating normally and no problems have been found for the time being
+- Some functions, such as providers updating order information and accepting orders, have bugs when users create orders. Users' operations on the front end cannot connect the updated information to the back end and write it to the database
+- During iteration 2, we modified the front-end code and the back-end interface. Now, the functions with bugs can operate normally
 
 ## Notes
 
