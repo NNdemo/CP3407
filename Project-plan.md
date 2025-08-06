@@ -23,9 +23,9 @@ lteration1 Retrospective:
 	Primary Goal: Complete user stories US1-US5
 
 * Key  Deliverables:
-	'iteration1.md'
-	Burndown Chart
-	Wireframe and ERD
+	1. 'iteration1.md'
+	2. Burndown Chart
+	3. Wireframe and ERD
 
 * What did not go well 
 	1. accepting/declining orders does not save to the database US4:Book a Cleaning Service
@@ -35,12 +35,12 @@ lteration1 Retrospective:
 	we modified the front-end code and the back-end interface. Now, the functions with bugs can operate normally. 
 
 * Metrics:
-	Planned Velocity: 90%
-	Actual Velocity: 100%
-	Defect Count: 2 small bugs 
-	Deployment Frequency: 3 deployments to test environment.
+	1. Planned Velocity: 90%
+	2. Actual Velocity: 100%
+	3. Defect Count: 2 small bugs 
+	4. Deployment Frequency: 3 deployments to test environment.
 
 * Next Steps:  
-	Incorporate all action items into Iteration 2 planning.  
-	Finalize and share the full test report; update `testing.md`.  
-	Refresh project README with Iteration 1 screenshots and links.  
+	1. Incorporate all action items into Iteration 2 planning.  
+	2. Finalize and share the full test report; update `testing.md`.  
+	3. Refresh project README with Iteration 1 screenshots and links.  
